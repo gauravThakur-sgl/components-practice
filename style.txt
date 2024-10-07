@@ -51,3 +51,9 @@ const Badge = ({ badgeTitle, variant = 'default' }) => {
 };
 
 export default Badge;
+
+
+
+
+
+

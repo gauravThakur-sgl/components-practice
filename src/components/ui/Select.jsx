@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
 function Select(props) {
-  
-  const { title, optionValue, variant="default",size="default" } = props;
+  const options = ["America", "India", "Russia", "Japan"]
+  const { title, id, variant="default",size="default" } = props;
   const selectColors = {
     default: "border-gray-300 focus:border-blue-500",
     error: "border-red-500 focus:border-red-600",
@@ -17,8 +17,12 @@ function Select(props) {
   const sizeClasses = selectSize[size] || selectSize.default
   return (
     <div >
-      <select name="" id="" className={`${baseClasses} ${variantClasses} ${sizeClasses}`}>
-        <option value={optionValue}>{title}</option>
+      <select name={title} id={id} className={`${baseClasses} ${variantClasses} ${sizeClasses}`}>
+        {options.map((option) => {
+          <option key={option.value} value={option.value}>
+            {option.value}
+          </option>
+        })}
       </select>
     </div>
   );
