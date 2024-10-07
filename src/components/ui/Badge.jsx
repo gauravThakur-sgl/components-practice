@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
-export default function Badge({ badgeTitle, variant = "default", size = "default" }) {
+export default function Badge({
+  badgeTitle,
+  variant = "default",
+  size = "default",
+}) {
   const badgeColors = {
     default:
-      "border border-green-300 p-1 rounded-md bg-green-200 text-green-700 text-green-700",
-    destructive: "border ring ring-red-300 bg-red-200 text-red-primary text-red-primary",
+      "border border-green-300 p-1 rounded-md bg-green-200 text-green-700",
+    destructive: "border ring ring-red-300 bg-red-200 text-red-primary",
+    ghost: "hover:bg-black hover:text-white",
   };
   const badgeSize = {
     default: "h-9 px-4 py-2",
@@ -14,15 +19,13 @@ export default function Badge({ badgeTitle, variant = "default", size = "default
     icon: "h-10 w-10",
   };
   const sizeClasses = badgeSize[size] || badgeSize.default;
-  const baseClasses = "p-1 rounded-md text-md";
+  const baseClasses = "inline-flex items-center p-1 rounded-md text-md";
   const variantClasses = badgeColors[variant] || badgeColors.default;
   return (
     <div className="p-2 flex justify-center items-center ">
-      <div>
-        <span className={`${variantClasses}, ${baseClasses}, ${sizeClasses}`}>
-          {badgeTitle}
-        </span>
-      </div>
+      <span className={`${variantClasses} ${baseClasses} ${sizeClasses}`}>
+        {badgeTitle}
+      </span>
     </div>
   );
 }
