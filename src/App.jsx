@@ -1,3 +1,4 @@
+import { Accordion } from "./components/ui/Accordian";
 import Badge from "./components/ui/Badge";
 import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
@@ -80,10 +81,8 @@ function App() {
           />
         </div>
         <div className="flex  items-center gap-2">
-          <ToggleSwitch name="newsletter" toggleId="2"/>
-          <ToggleSwitch name="daily"/>
-          <ToggleSwitch name="weekly"/>
-          <ToggleSwitch name="monthly"/>
+          <ToggleSwitch name="newsletter" toggleId="2" labeltext="Get 50% off"/>
+          <ToggleSwitch name="daily" toggleId="3"/>
         </div>
       </div>
 
@@ -109,6 +108,12 @@ function App() {
         </div>
       </div>
       <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2 border shadow-sm">
+        <h2 className="font-bold text-lg">Accordian</h2>
+        <div className="flex justify-center items-center gap-2">
+          <Accordion />
+        </div>
+      </div>
+      <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2 border shadow-sm">
         <h2 className="font-bold text-lg">Labels</h2>
         <div className="flex justify-center items-center gap-2 mt-6">
           <Label title="label form small project">
@@ -119,6 +124,7 @@ function App() {
           </Label>
         </div>
       </div>
+      
       {/* // Labels */}
     </>
   );

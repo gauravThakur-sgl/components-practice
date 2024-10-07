@@ -10,7 +10,7 @@ function TextArea(props) {
       sm: "h-16 text-sm",
       lg: "h-32 text-lg"
     };
-    const baseClasses = "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none"
+    const baseClasses = "w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none shadow-inner"
     const sizeClasses = textAreaSize[size] || textAreaSize.default;
     const variantClasses = textAreaColors[variant] || textAreaColors.default;
   
