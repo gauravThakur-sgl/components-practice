@@ -1,21 +1,25 @@
 /* eslint-disable react/prop-types */
+
 function Select(props) {
-  const { title, id,selectStyle, labelStyle } = props;
+  
+  const { title, optionValue, variant="default",size="default" } = props;
+  const selectColors = {
+    default: "border-gray-300 focus:border-blue-500",
+    error: "border-red-500 focus:border-red-600",
+  }
+  const selectSize = {
+    default: "h-10 text-base",
+    sm: "h-8 text-sm",
+    lg: "h-12 text-lg",
+  }
+  const baseClasses = "border rounded-md text-md"
+  const variantClasses = selectColors[variant] || selectSize.default
+  const sizeClasses = selectSize[size] || selectSize.default
   return (
-    <div className="p-2 flex justify-center items-center rounded-lg shadow-sm mt-6">
-      <div>
-        {/* <span className=" border border-green-300 p-1 rounded-md bg-green-200 text-sm text-green-600">
-          {badgeTitle}
-        </span> */}
-        <div className="flex flex-col">
-          <label htmlFor="Country-select" className={`${labelStyle}` + "text-sm font-bold pb-2"}>{title}</label>
-          <select name={title} id={id} className={`${selectStyle}` + "height-auto w-48 border border-blue-400 border-2 bg-white py-1 px-2 rounded-md shadow-sm"}>
-            <option value="america">America</option>
-            <option value="india">India</option>
-            <option value="japan">Japan</option>
-          </select>
-        </div>
-      </div>
+    <div >
+      <select name="" id="" className={`${baseClasses} ${variantClasses} ${sizeClasses}`}>
+        <option value={optionValue}>{title}</option>
+      </select>
     </div>
   );
 }

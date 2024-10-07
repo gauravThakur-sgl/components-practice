@@ -1,7 +1,8 @@
 import Badge from "./components/ui/Badge";
 import Button from "./components/ui/Button";
+import Card from "./components/ui/Card";
 import Input from "./components/ui/Input";
-import Select from "./components/ui/Select";
+// import Select from "./components/ui/Select";
 import TextArea from "./components/ui/TextArea";
 import ToolTip from "./components/ui/ToolTip";
 
@@ -32,14 +33,12 @@ function App() {
 
 
       {/* <Select
-        title="Select Country"
-        id="1"
-        labelStyle=""
-        selectStyle=""
-      />
+        title="America"
+        optionValue = "America, africa"
+      /> */}
       <ToolTip
         buttonStyle="bg-black"
-      /> */}
+      />
 
       {/* // Buttons */}
       <div className="flex justify-center items-center mt-6 gap-2">
@@ -55,19 +54,34 @@ function App() {
       </div>
 
       {/* //TextArea */}
-      <div className="flex justify-center items-center gap-2">
+      <div className="flex justify-center items-center gap-2 mt-6">
       <TextArea title="Write Here" placeHolder="Write Here..."  size="" />
       <TextArea title="Write Here" placeHolder="Write Here..." variant="error" size="sm" />
       <TextArea title="Write Here" placeHolder="Write Here lg..."  size="lg" />
       </div>
 
       {/* // Input */}
-      <div className="flex justify-center items-center gap-2">
-      <Input type="email" placeHolder="enter your email" />
-      <Input type="text" variant="error"/>
-      <Input />
+      <div className="flex justify-center items-center gap-2 mt-6">
+      <Input type="email" placeholder="enter your email" />
+      <Input type="checkbox" variant="error"/>
+      <Input type="text" variant="" size="lg" placeholder="Write in lg input"/>
+      <Input type="date" variant="" size="" />
 
       </div>
+
+      {/* // Cards */}
+      <div className="flex justify-center items-center gap-2 mt-6">
+        <Card variant="primary">
+          <span>This is the nested Content Inside the primary Card Component </span>
+        </Card>
+        <Card variant="secondary">
+          <span>This is the nested Content Inside the Secondary Card Component </span>
+        </Card>
+        <Card>
+          <span>This is the nested Content Inside the Default Card Component </span>
+        </Card>
+      </div>
+
     </>
   );
 }
