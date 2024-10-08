@@ -4,6 +4,7 @@ import Button from "./components/ui/Button";
 import Card from "./components/ui/Card";
 import Input from "./components/ui/Input";
 import Label from "./components/ui/Label";
+import { Tabs } from "./components/ui/Tabs";
 // import Select from "./components/ui/Select";
 import TextArea from "./components/ui/TextArea";
 import ToggleSwitch from "./components/ui/ToggleSwitch";
@@ -30,10 +31,14 @@ function App() {
           <h2 className="font-bold text-lg">ToolTip</h2>
           <div className="">
             <ToolTip message="This is tooltip" classname="">
-              <div className="m-2 hover:bg-green-200 border hover:text-green-800 rounded-md p-1">Hover over me</div>
+              <div className="m-2 hover:bg-green-200 border hover:text-green-800 rounded-md p-1">
+                Hover over me
+              </div>
             </ToolTip>
             <ToolTip message="This is tooltip" position="bottom">
-              <div className="m-2 hover:bg-green-200 border hover:text-green-800 rounded-md p-1">Hover over me</div>
+              <div className="m-2 hover:bg-green-200 border hover:text-green-800 rounded-md p-1">
+                Hover over me
+              </div>
             </ToolTip>
           </div>
         </div>
@@ -87,7 +92,7 @@ function App() {
             <Input
               type="radio"
               variant="error"
-              id="3"
+              id="4"
               labelData="push the button"
               className="cursor-pointer"
             />
@@ -149,6 +154,13 @@ function App() {
           </div>
         </div>
         {/* // Labels */}
+
+        <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2">
+          <h2 className="font-bold text-lg">Tabs</h2>
+          <div className="flex justify-center items-center gap-2 mt-6">
+            <Tabs />
+          </div>
+        </div>
       </div>
     </>
   );
