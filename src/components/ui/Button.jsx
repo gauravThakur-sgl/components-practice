@@ -12,7 +12,7 @@ function Button(props) {
   };
   const buttonSize =  {
     default: "h-9 px-4 py-2",
-    xs: "h-6 px-2 py-1",
+    xs: "h-6 px-3 py-2",
     sm: "h-9 rounded-md px-3",
     lg: "h-10 rounded-md px-8",
     xl: "h-11 rounded-md w-full max-w-sm",

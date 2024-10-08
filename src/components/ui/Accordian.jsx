@@ -10,9 +10,9 @@ export const Accordion = ({ className, ...props }) => {
   const { title, content } = items;
 
   return (
-    <div className={`border rounded-xl w-96 bg-gray-300 shadow-lg py-2 px-6 rounded ${className || ""}`} {...props}>
+    <div className={`border rounded-xl w-96 bg-gray-300 shadow-lg py-2 px-6 rounded-lg transition ease-in-out delay-150 cursor-pointer ${className || ""}`} {...props}>
       <div>
-        <div className="flex justify-between items-center font-bold transition ease-in-out delay-150"
+        <div className="flex justify-between items-center font-bold "
             onClick={() => setOpenIndex(!openIndex)}
         >
           <div>{title}</div>
