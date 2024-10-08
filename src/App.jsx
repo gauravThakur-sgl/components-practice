@@ -9,6 +9,7 @@ import { Tabs } from "./components/ui/Tabs";
 import TextArea from "./components/ui/TextArea";
 import ToggleSwitch from "./components/ui/ToggleSwitch";
 import ToolTip from "./components/ui/ToolTip";
+import { Progress } from "./components/ui/ProgressBar";
 
 function App() {
   return (
@@ -60,6 +61,13 @@ function App() {
             <Button title="Submit lg" size="lg" type="submit" />
             <Button title="Submit xl" size="xl" type="submit" />
             <Button title="Submit xl" variant="dark" type="submit" />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2">
+          <h2 className="text-lg font-bold">Progress Bar</h2>
+          <div className="flex justify-center items-center gap-2" >
+            <Progress value="25" />
+            <Progress value="75" variant="destructive" />
           </div>
         </div>
 

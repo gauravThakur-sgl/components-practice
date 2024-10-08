@@ -26,7 +26,7 @@ export function Tabs ({ className, ...props }) {
           <button
             key={index}
             className={`py-2 px-4 ${
-              activeTab === index ? "border-b-2 border-blue-500" : "border-transparent hover:border-gray-200"
+              activeTab === index ? "border-b-2 transition-all duration-200 border-green-500" : "border-transparent hover:border-gray-200"
             }`}
             onClick={() => setActiveTab(index)}
           >

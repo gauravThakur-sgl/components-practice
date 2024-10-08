@@ -2,7 +2,7 @@
 
 function Select(props) {
   const options = ["America", "India", "Russia", "Japan"]
-  const { title, id, variant="default",size="default" } = props;
+  const { title, id, variant="default",size="default", className } = props;
   const selectColors = {
     default: "border-gray-300 focus:border-blue-500",
     error: "border-red-500 focus:border-red-600",
@@ -17,7 +17,7 @@ function Select(props) {
   const sizeClasses = selectSize[size] || selectSize.default
   return (
     <div >
-      <select name={title} id={id} className={`${baseClasses} ${variantClasses} ${sizeClasses}`}>
+      <select name={title} id={id} className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ""}`}>
         {options.map((option) => {
           <option key={option.value} value={option.value}>
             {option.value}
