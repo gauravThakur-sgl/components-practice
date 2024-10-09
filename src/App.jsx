@@ -10,6 +10,9 @@ import TextArea from "./components/ui/TextArea";
 import ToggleSwitch from "./components/ui/ToggleSwitch";
 import ToolTip from "./components/ui/ToolTip";
 import { Progress } from "./components/ui/ProgressBar";
+import PopOver from "./components/ui/PopOver";
+// import UserRegistrationForm from "./components/Form";
+import UserForm from "./components/UserForm";
 
 function App() {
   return (
@@ -65,7 +68,7 @@ function App() {
         </div>
         <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2">
           <h2 className="text-lg font-bold">Progress Bar</h2>
-          <div className="flex justify-center items-center gap-2" >
+          <div className="flex justify-center items-center gap-2">
             <Progress value="25" />
             <Progress value="75" variant="destructive" />
           </div>
@@ -147,7 +150,7 @@ function App() {
         <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2">
           <h2 className="font-bold text-lg">Accordian</h2>
           <div className="flex justify-center items-center gap-2">
-            <Accordion />
+            {/* <Accordion /> */}
           </div>
         </div>
         <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2">
@@ -167,6 +170,19 @@ function App() {
           <h2 className="font-bold text-lg">Tabs</h2>
           <div className="flex justify-center items-center gap-2 mt-6">
             <Tabs />
+          </div>
+        </div>
+        {/* // PopOver */}
+        <div className="flex flex-col justify-center items-center mt-6 p-4 gap-2">
+          <h2 className="font-bold text-lg">PopOver</h2>
+          <div className="flex justify-center items-center gap-2">
+            <PopOver content="This is popped Over Content" trigger="Pop Me" />
+          </div>
+        </div>
+        <div className="flex flex-col justify-center items-center mt-10 p-4 gap-2">
+          <h2 className="font-bold text-lg">User Form</h2>
+          <div className="flex justify-center items-center gap-2">
+            <UserForm />
           </div>
         </div>
       </div>
