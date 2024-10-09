@@ -1,14 +1,14 @@
 import { useState } from "react";
 import Input from "./ui/Input";
 import TextArea from "./ui/TextArea";
-import Select from "./ui/Select";
+// import Select from "./ui/Select";
 import ToggleSwitch from "./ui/ToggleSwitch";
 import { Accordion } from "./ui/Accordian";
 import ToolTip from "./ui/ToolTip";
 import Button from "./ui/Button";
 import PopOver from "./ui/PopOver";
-import { Tabs } from "./ui/Tabs";
-import Badge from "./ui/Badge";
+// import { Tabs } from "./ui/Tabs";
+// import Badge from "./ui/Badge";
 // import { Progress } from "./ui/ProgressBar";
 
 function UserForm() {
@@ -32,7 +32,7 @@ function UserForm() {
     }));
   }
   return (
-    <div className="flex flex-col justify-center items-center mt-6 p-6 gap-2 max-w-[1000px] mx-auto border rounded-lg">
+    <div className="flex flex-col justify-center items-center p-6 gap-2 max-w-[1000px] mx-auto border rounded-lg">
       <h2 className="text-2xl font-bold mb-4">Form</h2>
       <div className="grid grid-cols-2 justify-start items-center gap-4">
         <div className="flex items-center gap-2 w-full">
@@ -186,7 +186,7 @@ function UserForm() {
             }
           />
         </div>
-        <Tabs
+        {/* <Tabs
           tabs={[
             {
               label: "Personal Info",
@@ -202,7 +202,7 @@ function UserForm() {
             },
           ]}
         />
-        <Badge text="Beta" variant="destructive" />
+        <Badge text="Beta" variant="destructive" /> */}
       </div>
     </div>
   );
