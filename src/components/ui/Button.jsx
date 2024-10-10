@@ -18,7 +18,7 @@ function Button(props) {
     xl: "h-11 rounded-md w-full max-w-sm",
     icon: "h-10 w-10",
   };
-  const baseClasses = "inline-flex items-center py-2 px-3 rounded-md text-md"
+  const baseClasses = "inline-flex justify-center items-center py-2 px-3 rounded-md text-md"
   const sizeClasses = buttonSize[size] || buttonSize.default;
   const variantClasses = buttonColors[variant] || buttonColors.default;
 

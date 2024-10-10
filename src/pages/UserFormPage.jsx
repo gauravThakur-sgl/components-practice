@@ -1,17 +1,17 @@
 import { useState } from "react";
-import Input from "./ui/Input";
-import TextArea from "./ui/TextArea";
+import Input from "../components/ui/Input";
+import TextArea from "../components/ui/TextArea";
 // import Select from "./ui/Select";
-import ToggleSwitch from "./ui/ToggleSwitch";
-import { Accordion } from "./ui/Accordian";
-import ToolTip from "./ui/ToolTip";
-import Button from "./ui/Button";
-import PopOver from "./ui/PopOver";
+import ToggleSwitch from "../components/ui/ToggleSwitch";
+import { Accordion } from "../components/ui/Accordian";
+import ToolTip from "../components/ui/ToolTip";
+import Button from "../components/ui/Button";
+import PopOver from "../components/ui/PopOver";
 // import { Tabs } from "./ui/Tabs";
 // import Badge from "./ui/Badge";
 // import { Progress } from "./ui/ProgressBar";
 
-function UserForm() {
+function UserFormPage() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,9 +32,10 @@ function UserForm() {
     }));
   }
   return (
-    <div className="flex flex-col justify-center items-center p-6 gap-2 max-w-[1000px] mx-auto border rounded-lg">
-      <h2 className="text-2xl font-bold mb-4">Form</h2>
-      <div className="grid grid-cols-2 justify-start items-center gap-4">
+    <div className="flex flex-col justify-center items-center h-screen p-6 gap-2 max-w-[1000px] mx-auto">
+      <div className="border rounded-md py-4 px-6">
+      <h2 className="text-2xl font-bold mb-4 flex justify-center items-center">Form</h2>
+      <div className="grid grid-cols-2 justify-start items-center gap-4 mt-6">
         <div className="flex items-center gap-2 w-full">
           <span>Name: </span>
           <Input
@@ -79,7 +80,7 @@ function UserForm() {
           />
         </div>
       </div>
-      <div className="w-full space-y-4">
+      <div className="w-full space-y-4 mt-6">
         <div className="flex items-center gap-2 mt-2">
           <span>Enter your BirthDate: </span>
           <Input
@@ -204,8 +205,9 @@ function UserForm() {
         />
         <Badge text="Beta" variant="destructive" /> */}
       </div>
+      </div>
     </div>
   );
 }
 
-export default UserForm;
+export default UserFormPage;

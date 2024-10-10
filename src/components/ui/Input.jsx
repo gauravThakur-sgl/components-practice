@@ -14,7 +14,7 @@ function Input(props) {
     const variantClasses = inputColors[variant] || inputColors.default
     const sizeClasses = inputSize[size] || inputSize.default
   return (
-    <div className="flex justify-center items-center gap-2">
+    <div className="flex justify-center items-center">
         <input type={type} placeholder={placeholder} id={id} className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ''}`} />
         <label htmlFor={id}>{labelData}</label>
     </div>

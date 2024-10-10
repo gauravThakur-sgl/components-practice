@@ -8,9 +8,9 @@ function Label(props) {
     }
     const labelSize =  {
         default: "p-2",
-        sm: "p-1",
-        md: "p-3",
-        lg: "p-5"
+        sm: "font bold text-sm",
+        md: "font bold text-md",
+        lg: "font-bold text-2xl"
     }
     const baseClass = " rounded-md "
     const variantClasses = labelColors[variant] || labelColors.default
