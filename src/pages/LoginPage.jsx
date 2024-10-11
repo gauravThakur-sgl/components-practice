@@ -1,10 +1,15 @@
+import DropDownList from "../components/DropDownList";
 import Button from "../components/ui/Button";
 import Input from "../components/ui/Input";
 import Label from "../components/ui/Label";
 
 function LoginPage() {
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-screen flex flex-col justify-center items-center">
+      <div className="flex justify-center items-center w-[1000px]">
+          <DropDownList className="appearance-none bg-white" />
+          <DropDownList className="appearance-none bg-white" />
+        </div>
       <div className="w-[475px] border rounded-md p-4">
         <div className="flex justify-center items-center">
           <Label size="lg" className="">
@@ -21,12 +26,7 @@ function LoginPage() {
           type="password"
           className="w-full mt-4 py-6"
         />
-        <Button
-          type="submit"
-          title="Login"
-          size="lg"
-          className="my-4 w-full"
-        />
+        <Button type="submit" title="Login" size="lg" className="my-4 w-full" />
         <hr />
         <Button
           type="submit"
@@ -35,6 +35,7 @@ function LoginPage() {
           size="lg"
           className="my-4 w-full"
         />
+        
       </div>
     </div>
   );
