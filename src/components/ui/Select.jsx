@@ -7,7 +7,7 @@ function Select(props) {
     size = "default",
     className,
     options,
-    onChange
+    onChange,
   } = props;
 
   const selectColors = {

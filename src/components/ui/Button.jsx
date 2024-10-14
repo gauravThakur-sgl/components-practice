@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 function Button(props) {
-  const { title, type, variant = "default", size = "default", className } = props;
+  const { title, type, variant = "default", size = "default", className, onClick } = props;
   const buttonColors = {
     default: "bg-btn-primary hover:bg-btn-primary-hover text-white border text-white font-bold shadow",
     destructive: "bg-red-primary text-white font-bold hover:bg-red-background",
@@ -24,7 +24,7 @@ function Button(props) {
 
 
   return <div>
-    <button className={`${variantClasses} ${baseClasses} ${sizeClasses} ${className || ''}`} type={type}>{title}</button>
+    <button onClick={onClick} className={`${variantClasses} ${baseClasses} ${sizeClasses} ${className || ''}`} type={type}>{title}</button>
   </div>;
 }
 export default Button;

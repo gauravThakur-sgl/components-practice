@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 function Input(props) {
-    const {type, placeholder, id, variant="default", size="default", labelData, className, name, onChange} = props
+    const {type, placeholder, id, variant="default", size="default", labelData, className, name, onChange, required} = props
     const inputColors = {
         default: "bg-black-300",
         error: "bg-red-100 border-0 ring-1 ring-inset ring-red-300 focus:ring-2 focus:ring-red-400"
@@ -15,7 +15,7 @@ function Input(props) {
     const sizeClasses = inputSize[size] || inputSize.default
   return (
     <div className="flex flex-col justify-start gap-2 appearance-none">
-      <label htmlFor={id}>{labelData} </label>
+      <label htmlFor={id}>{labelData} <span className="text-red-500">{required}</span> </label>
       <input type={type} placeholder={placeholder} id={id} name={name} className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ''}`}  onChange={onChange}/>
     </div>
   )
