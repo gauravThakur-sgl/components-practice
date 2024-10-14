@@ -3,33 +3,30 @@ import { Accordion } from "./ui/Accordian";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
 import Select from "./ui/Select";
+import CheckBox from "./ui/CheckBox";
 
 function ConsigneeDetails() {
+  const [checkbox, setCheckbox] = useState(true);
+  function onCheckboxClick() {
+    const state = checkbox;
+    if (state === true) {
+      setCheckbox(false);
+    } else {
+      setCheckbox(true);
+    }
+  }
   const [selectedCountry, setSelectedCountry] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [selectedState, setSelectedState] = useState("");
   const [step, setStep] = useState(1);
-  // const [direction, setDirection] = useState('right');
 
   function nextStep() {
-    // setDirection('right');
     setStep(step + 1);
   }
   function prevStep() {
-    // setDirection('left')
     setStep(step - 1);
   }
-  // function getStepClasses(stepNumber){
-  //   let classes = 'animate-pulse';
-  //   if (step === stepNumber) {
-  //     classes += 'opacity-100';
-  //   } else if (step < stepNumber) {
-  //     classes += 'opacity-0';
-  //   } else {
-  //     classes += 'opacity-0';
-  //   }
-  //   return classes;
-  // };
+
   const countries = [
     { value: "usa", label: "United States" },
     { value: "india", label: "India" },
@@ -95,20 +92,30 @@ function ConsigneeDetails() {
     } else if (data.lastName.length < 3) {
       errors.lastName = "Lastname must be at least 3 characters long";
     }
-    if(!data.mobilenumber.trim()) {
-      errors.mobilenumber = "Mobile Number is required";
-    } else if(data.mobilenumber.length < 10) {
-      errors.mobilenumber = "Mobile Number must be atleast 10 digits long"
+    if (!data.address1.trim()) {
+      errors.address1 = "Address1 is required";
+    }
+    if (!data.address2.trim()) {
+      errors.address2 = "Address2 is required";
+    }
+    if (!data.city) {
+      errors.city = "City is required";
     }
 
+    if (!data.mobilenumber.trim()) {
+      errors.mobilenumber = "Mobile Number is required";
+    } else if (data.mobilenumber.length < 10) {
+      errors.mobilenumber = "Mobile Number must be atleast 10 digits long";
+    }
 
     if (!data.email.trim()) {
       errors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
       errors.email = "Email is invalid";
     }
 
-    {/*if (!data.password) {
+    {
+      /*if (!data.password) {
       errors.password = "Password is required";
     } else if (data.password.length < 8) {
       errors.password = "Password must be at least 8 characters long";
@@ -117,7 +124,8 @@ function ConsigneeDetails() {
     if (data.confirmPassword !== data.password) {
       errors.confirmPassword = "Passwords do not match";
     }
-    */}
+    */
+    }
 
     return errors;
   };
@@ -165,14 +173,14 @@ function ConsigneeDetails() {
                     <Input
                       placeholder="Enter First Name..."
                       required="*"
-                      className="placeholder:font-semibold"
+                      className=""
                       labelData="First Name"
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleInputChange}
                     />
                     {errors.firstName && (
-                      <span className="font-bold text-red-500">
+                      <span className="text-sm text-red-500">
                         {errors.lastName}
                       </span>
                     )}
@@ -180,7 +188,7 @@ function ConsigneeDetails() {
                   <div>
                     <Input
                       placeholder="Enter Last Name..."
-                      className="placeholder:font-semibold"
+                      className=""
                       labelData="Last Name"
                       name="lastName"
                       value={formData.lastName}
@@ -194,32 +202,34 @@ function ConsigneeDetails() {
                   </div>
 
                   <div>
-                  <Input
-                    placeholder="Enter Mobile Number..."
-                    required="*"
-                    className="placeholder:font-semibold"
-                    labelData="Mobile Number"
-                    name="middleName"
-                    value={formData.mobilenumber}
-                    onChange={handleInputChange}
-                  />
-                  {errors.mobilenumber && (
-                    <span className="text-red-500 text-sm">{errors.mobilenumber}</span>
-                  )}
+                    <Input
+                      placeholder="Enter Mobile Number..."
+                      required="*"
+                      className=""
+                      labelData="Mobile Number"
+                      name="mobileNumber"
+                      value={formData.mobilenumber}
+                      onChange={handleInputChange}
+                    />
+                    {errors.mobilenumber && (
+                      <span className="text-red-500 text-sm">
+                        {errors.mobilenumber}
+                      </span>
+                    )}
                   </div>
                   <div>
-                  <Input
-                    placeholder="Enter Email ID..."
-                    className="placeholder:font-semibold"
-                    labelData="Email Address"
-                    required="*"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                  {errors.email && (
-                    <span className="text-red-500">{errors.email}</span>
-                  )}
+                    <Input
+                      placeholder="Enter Email ID..."
+                      className=""
+                      labelData="Email Address"
+                      required="*"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                    />
+                    {errors.email && (
+                      <span className="text-red-500">{errors.email}</span>
+                    )}
                   </div>
                 </div>
                 <div className="flex justify-end items-center m-2">
@@ -237,27 +247,41 @@ function ConsigneeDetails() {
               <div className={``}>
                 <h2 className="font-bold text-lg mt-4">Shipping Address</h2>
                 <div className="grid grid-cols-3 justify-start items-center gap-4 mt-2">
-                  <Input
-                    placeholder="Enter Address1..."
-                    className="placeholder:font-semibold"
-                    labelData="Address 1"
-                    required = "*"
-                    name="Address 1"
-                    value={formData.address1}
-                    onChange={handleInputChange}
-                  />
-                  <Input
-                    placeholder="Enter Address2..."
-                    className="placeholder:font-semibold"
-                    labelData="Address 2"
-                    required="*"
-                    name="Address 2"
-                    value={formData.address2}
-                    onChange={handleInputChange}
-                  />
+                  <div>
+                    <Input
+                      placeholder="Enter Address 1..."
+                      className=""
+                      labelData="Address 1"
+                      required="*"
+                      name="Address 1"
+                      value={formData.address1}
+                      onChange={handleInputChange}
+                    />
+                    {errors.address1 && (
+                      <span className="text-sm text-red-500">
+                        {errors.address1}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <Input
+                      placeholder="Enter Address 2..."
+                      className=""
+                      labelData="Address 2"
+                      required="*"
+                      name="Address 2"
+                      value={formData.address2}
+                      onChange={handleInputChange}
+                    />
+                    {errors.address2 && (
+                      <span className="text-sm text-red-500">
+                        {errors.address2}
+                      </span>
+                    )}
+                  </div>
                   <Input
                     placeholder="Enter Landmark..."
-                    className="placeholder:font-semibold"
+                    className=""
                     labelData="Landmark"
                     name="landMark"
                     value={formData.landmark}
@@ -287,32 +311,40 @@ function ConsigneeDetails() {
                     />
                   </div>
                   <div>
-                  <Input
-                    placeholder="Enter Email ID..."
-                    className="placeholder:font-semibold"
-                    labelData="Email Address"
-                    required="*"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                  />
-                  {errors.email && (
-                    <span className="text-sm text-red-500">{errors.email}</span>
-                  )}
+                    <Input
+                      placeholder="Enter Email ID..."
+                      className=""
+                      labelData="Email Address"
+                      required="*"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                    />
+                    {errors.email && (
+                      <span className="text-sm text-red-500">
+                        {errors.email}
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <Input
+                      placeholder="Enter City..."
+                      className=""
+                      labelData="Enter City"
+                      required="*"
+                      name="City"
+                      value={formData.city}
+                      onChange={handleInputChange}
+                    />
+                    {errors.city && (
+                      <span className="text-sm text-red-500">
+                        {errors.city}
+                      </span>
+                    )}
                   </div>
                   <Input
-                    placeholder="Enter City..."
-                    className="placeholder:font-semibold"
-                    labelData="Enter City"
-                    required="*"
-                    name="City"
-                    value={formData.city}
-                    onChange={handleInputChange}
-                  />
-
-                  <Input
                     placeholder="Enter Pincode..."
-                    className="placeholder:font-semibold"
+                    className=""
                     labelData="Enter Pincode"
                     required="*"
                     name="PinCode"
@@ -321,19 +353,143 @@ function ConsigneeDetails() {
                   />
                 </div>
                 <div className="inline-flex justify-start items-center gap-2 mt-6">
-                  <input
+                  {/* <input
                     type="checkbox"
-                    id="checkbox"
+                    id="checkbox1"
                     name="addressPreference"
                     className="cursor-pointer accent:bg-[#2E5FAD]"
                     checked={formData.addressPreference}
                     onChange={handleInputChange}
+                    onClick={onCheckboxClick}
                   />
-                  <label htmlFor="checkbox" className="text-sm inline-flex">
+                  <label htmlFor="checkbox1" className="text-sm inline-flex">
                     Billing address is same as shipping address
-                  </label>
+                  </label> */}
+                  <CheckBox
+                    type="checkbox" name="addressPreference" id="checkbox2"
+                    checked={formData.addressPreference + '' + onCheckboxClick}
+                    labelData="Billing address is same as shipping address"
+                    onChange={handleInputChange}
+                    onClick={onCheckboxClick}
+                  />
                 </div>
-                <div className="flex justify-between items-center m-2">
+                <div>
+                  {/* Billing Info detail */}
+                  {checkbox && (
+                    <div>
+                      <h2 className="font-bold text-lg mt-4">
+                        Billing Address
+                      </h2>
+                      <div className="grid grid-cols-3 justify-start items-center gap-4 mt-2">
+                        <div>
+                          <Input
+                            placeholder="Enter Address 1..."
+                            className=""
+                            labelData="Address 1"
+                            required="*"
+                            name="Address 1"
+                            value={formData.address1}
+                            onChange={handleInputChange}
+                          />
+                          {errors.address1 && (
+                            <span className="text-sm text-red-500">
+                              {errors.address1}
+                            </span>
+                          )}
+                        </div>
+                        <div>
+                          <Input
+                            placeholder="Enter Address 2..."
+                            className=""
+                            labelData="Address 2"
+                            required="*"
+                            name="Address 2"
+                            value={formData.address2}
+                            onChange={handleInputChange}
+                          />
+                          {errors.address2 && (
+                            <span className="text-sm text-red-500">
+                              {errors.address2}
+                            </span>
+                          )}
+                        </div>
+                        <Input
+                          placeholder="Enter Landmark..."
+                          className=""
+                          labelData="Landmark"
+                          name="landMark"
+                          value={formData.landmark}
+                          onChange={handleInputChange}
+                        />
+                        <div>
+                          <p>Country</p>
+                          <Select
+                            title="Country"
+                            id="country-select"
+                            required="*"
+                            options={countries}
+                            onChange={handleCountryChange}
+                            className="px-2"
+                            value={formData.country}
+                          />
+                        </div>
+                        <div>
+                          <p>State</p>
+                          <Select
+                            title="State"
+                            id="state-select"
+                            options={states[selectedCountry] || []}
+                            onChange={handleStateChange}
+                            className="px-2"
+                            value={formData.state}
+                          />
+                        </div>
+                        <div>
+                          <Input
+                            placeholder="Enter Email ID..."
+                            className=""
+                            labelData="Email Address"
+                            required="*"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                          />
+                          {errors.email && (
+                            <span className="text-sm text-red-500">
+                              {errors.email}
+                            </span>
+                          )}
+                        </div>
+                        <div>
+                          <Input
+                            placeholder="Enter City..."
+                            className=""
+                            labelData="Enter City"
+                            required="*"
+                            name="City"
+                            value={formData.city}
+                            onChange={handleInputChange}
+                          />
+                          {errors.city && (
+                            <span className="text-sm text-red-500">
+                              {errors.city}
+                            </span>
+                          )}
+                        </div>
+                        <Input
+                          placeholder="Enter Pincode..."
+                          className=""
+                          labelData="Enter Pincode"
+                          required="*"
+                          name="PinCode"
+                          value={formData.pincode}
+                          onChange={handleInputChange}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="flex justify-between items-center m-2 mt-6">
                   <Button
                     type="submit"
                     title="Prev"
