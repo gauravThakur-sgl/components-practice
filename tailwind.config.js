@@ -7,13 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        'btn-primary': '#009ef7',
-        'btn-primary-hover': '#009ec9',
+        'btn-primary': '#1f499e',
         'red-primary':'#ff0000',
         'red-background': '#ff7b7b',
         'red-border': '#ffbaba'
       },
+      fontFamily: {
+        'poppins': ["Poppins", "sans-serif"],
+      }
     },
+
   },
   plugins: [],
 }

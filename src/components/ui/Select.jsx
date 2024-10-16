@@ -33,7 +33,7 @@ function Select(props) {
         className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ""}`}
         onChange={onChange}
       >
-        <option value="">Select {title}</option>
+        <option value="" className="text-sm">Select {title}</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

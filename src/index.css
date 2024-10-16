@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    @apply font-poppins
+  }
+}
+
 @layer components {
   .div {
     @apply p-2 flex justify-center items-center rounded-lg shadow-sm mt-6

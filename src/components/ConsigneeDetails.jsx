@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Accordion } from "./ui/Accordian";
 import Button from "./ui/Button";
@@ -6,34 +7,28 @@ import Select from "./ui/Select";
 import CheckBox from "./ui/CheckBox";
 
 function ConsigneeDetails() {
-  const [checkbox, setCheckbox] = useState(true);
-  function onCheckboxClick() {
-    const state = checkbox;
-    if (state === true) {
-      setCheckbox(false);
-    } else {
-      setCheckbox(true);
-    }
-  }
   const [selectedCountry, setSelectedCountry] = useState("");
-  // eslint-disable-next-line no-unused-vars
+  const [checkbox, setCheckbox] = useState(true);
   const [selectedState, setSelectedState] = useState("");
   const [step, setStep] = useState(1);
-
+  function onCheckboxClick() {
+    setCheckbox(!checkbox)
+  }
+  // eslint-disable-next-line no-unused-vars
   function nextStep() {
     setStep(step + 1);
   }
   function prevStep() {
     setStep(step - 1);
   }
-
+  //Countries List
   const countries = [
     { value: "usa", label: "United States" },
     { value: "india", label: "India" },
     { value: "russia", label: "Russia" },
     { value: "japan", label: "Japan" },
   ];
-
+  // States List
   const states = {
     usa: [
       { value: "ny", label: "New York" },
@@ -48,15 +43,24 @@ function ConsigneeDetails() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    mobilenumber: "",
+    mobileNumber: "",
     email: "",
-    address1: "",
-    address2: "",
-    landmark: "",
-    country: "",
-    state: "",
-    city: "",
-    pincode: "",
+    shippingAddress1: "",
+    shippingAddress2: "",
+    shippingLandmark: "",
+    shippingCountry: "",
+    shippingState: "",
+    shippingCity: "",
+    shippingEmail: "",
+    shippingPincode: "",
+    billingAddress1: "",
+    billingAddress2: "",
+    billingLandmark: "",
+    billingCountry: "",
+    billingState: "",
+    billingCity: "",
+    billingEmail: "",
+    billingPincode: "",
     addressPreference: "",
   });
 
@@ -66,8 +70,8 @@ function ConsigneeDetails() {
     setSelectedState("");
     setFormData((prevData) => ({
       ...prevData,
-      country: country,
-      state: "",
+      shippingCountry: country,
+      shippingState: "",
     }));
   };
   const handleStateChange = (e) => {
@@ -75,43 +79,74 @@ function ConsigneeDetails() {
     setSelectedState(state);
     setFormData((prevData) => ({
       ...prevData,
-      state: state,
+      shippingState: state,
     }));
   };
   const [errors, SetErrors] = useState({});
+  
+  // Applying Validation on the input fields
   const validateForm = (data) => {
     const errors = {};
-
+    // Checking First Name
     if (!data.firstName.trim()) {
       errors.firstName = "Username is required";
     } else if (data.firstName.length < 3) {
       errors.username = "Firstname must be at least 3 characters long";
     }
+    // Checking LastName
     if (!data.lastName.trim()) {
       errors.lastName = "Lastname is required";
     } else if (data.lastName.length < 3) {
       errors.lastName = "Lastname must be at least 3 characters long";
     }
-    if (!data.address1.trim()) {
-      errors.address1 = "Address1 is required";
+    // Checking ShippingAddress1
+    if (!data.shippingAddress1.trim()) {
+      errors.shippingAddress1 = "Address 1 is required";
     }
-    if (!data.address2.trim()) {
-      errors.address2 = "Address2 is required";
+    // Checking Shipping Address 2
+    if (!data.shippingAddress2.trim()) {
+      errors.shippingAddress2 = "Address 2 is required";
     }
-    if (!data.city) {
-      errors.city = "City is required";
+    {/*}
+    if(!data.country()) {
+      if(errors.country === "Select COuntry"){
+        errors.country = "Country required"
+      }
     }
-
-    if (!data.mobilenumber.trim()) {
-      errors.mobilenumber = "Mobile Number is required";
-    } else if (data.mobilenumber.length < 10) {
+    if(!data.state()) {
+      errors.state = "State required"
+    }
+      */}
+    // Checking Shipping city
+    if (!data.shippingCity) {
+      errors.shippingCity = "City is required";
+    }
+    // Checking Shipping Email
+    if (!data.shippingEmail.trim()) {
+      errors.shippingEmail = "Email is required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.shippingEmail)) {
+      errors.shippingEmail = "Email is invalid";
+    }
+    // Checking Shipping Pincode
+    
+    // Checking Mobile Number
+    if (!data.mobileNumber.trim()) {
+      errors.mobileNumber = "Mobile Number is required";
+    }
+    else if (data.mobileNumber.length < 10) {
       errors.mobilenumber = "Mobile Number must be atleast 10 digits long";
     }
-
+    // Checking primary email
     if (!data.email.trim()) {
       errors.email = "Email is required";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.email)) {
       errors.email = "Email is invalid";
+    }
+    // Checking Billing Email
+    if(!data.billingEmail.trim()) {
+      errors.billingEmail = "Email is required";
+    } else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(data.billingEmail)) {
+      errors.billingEmail = "Email is invalid"
     }
 
     {
@@ -126,9 +161,10 @@ function ConsigneeDetails() {
     }
     */
     }
-
     return errors;
   };
+
+  // Handle inputChange Function
   function handleInputChange(e) {
     const { name, value } = e.target;
     console.log(name, value);
@@ -137,6 +173,8 @@ function ConsigneeDetails() {
       [name]: value,
     }));
   }
+
+  // Handle Submit Button for the form
   function handleSubmit(e) {
     e.preventDefault();
     const newErrors = validateForm(formData);
@@ -150,7 +188,7 @@ function ConsigneeDetails() {
   }
 
   return (
-    <div>
+    <div className="font-poppins">
       <form onSubmit={handleSubmit}>
         <Accordion
           items={[
@@ -165,7 +203,7 @@ function ConsigneeDetails() {
           <div className={`bg-white px-6 mt-4`}>
             {step === 1 && (
               <div id="personal-details" className={``}>
-                <h2 className="font-bold text-lg">Personal Details</h2>
+                <h2 className="text-sm font-semibold">Personal Details</h2>
                 <div
                   className={`grid grid-cols-3 justify-start items-center gap-4 mt-2 `}
                 >
@@ -180,7 +218,7 @@ function ConsigneeDetails() {
                       onChange={handleInputChange}
                     />
                     {errors.firstName && (
-                      <span className="text-sm text-red-500">
+                      <span className="text-sm font-medium text-red-500">
                         {errors.lastName}
                       </span>
                     )}
@@ -195,7 +233,7 @@ function ConsigneeDetails() {
                       onChange={handleInputChange}
                     />
                     {errors.lastName && (
-                      <span className="text-sm text-red-500 p-1">
+                      <span className="text-sm font-medium text-red-500 p-1">
                         {errors.lastName}
                       </span>
                     )}
@@ -208,12 +246,12 @@ function ConsigneeDetails() {
                       className=""
                       labelData="Mobile Number"
                       name="mobileNumber"
-                      value={formData.mobilenumber}
+                      value={formData.mobileNumber}
                       onChange={handleInputChange}
                     />
-                    {errors.mobilenumber && (
-                      <span className="text-red-500 text-sm">
-                        {errors.mobilenumber}
+                    {errors.mobileNumber && (
+                      <span className="text-red-500 text-sm font-medium">
+                        {errors.mobileNumber}
                       </span>
                     )}
                   </div>
@@ -228,7 +266,7 @@ function ConsigneeDetails() {
                       onChange={handleInputChange}
                     />
                     {errors.email && (
-                      <span className="text-red-500">{errors.email}</span>
+                      <span className="text-red-500 text-sm font-medium">{errors.email}</span>
                     )}
                   </div>
                 </div>
@@ -243,9 +281,11 @@ function ConsigneeDetails() {
               </div>
             )}
 
+            {/* Step of the form starts from here */}
+
             {step === 2 && (
               <div className={``}>
-                <h2 className="font-bold text-lg mt-4">Shipping Address</h2>
+                <h2 className="text-sm font-semibold mt-4">Shipping Address</h2>
                 <div className="grid grid-cols-3 justify-start items-center gap-4 mt-2">
                   <div>
                     <Input
@@ -253,13 +293,13 @@ function ConsigneeDetails() {
                       className=""
                       labelData="Address 1"
                       required="*"
-                      name="Address 1"
-                      value={formData.address1}
+                      name="shippingAddress1"
+                      value={formData.shippingAddress1}
                       onChange={handleInputChange}
                     />
-                    {errors.address1 && (
-                      <span className="text-sm text-red-500">
-                        {errors.address1}
+                    {errors.shippingAddress1 && (
+                      <span className="text-sm font-medium text-red-500">
+                        {errors.shippingAddress1}
                       </span>
                     )}
                   </div>
@@ -269,13 +309,13 @@ function ConsigneeDetails() {
                       className=""
                       labelData="Address 2"
                       required="*"
-                      name="Address 2"
-                      value={formData.address2}
+                      name="shippingAddress2"
+                      value={formData.shippingAddress2}
                       onChange={handleInputChange}
                     />
-                    {errors.address2 && (
-                      <span className="text-sm text-red-500">
-                        {errors.address2}
+                    {errors.shippingAddress2 && (
+                      <span className="text-sm font-medium text-red-500">
+                        {errors.shippingAddress2}
                       </span>
                     )}
                   </div>
@@ -283,12 +323,12 @@ function ConsigneeDetails() {
                     placeholder="Enter Landmark..."
                     className=""
                     labelData="Landmark"
-                    name="landMark"
+                    name="shippingLandMark"
                     value={formData.landmark}
                     onChange={handleInputChange}
                   />
                   <div>
-                    <p>Country</p>
+                    <p>Country <span className="text-sm font-normal text-red-primary">*</span></p>
                     <Select
                       title="Country"
                       id="country-select"
@@ -296,18 +336,18 @@ function ConsigneeDetails() {
                       options={countries}
                       onChange={handleCountryChange}
                       className="px-2"
-                      value={formData.country}
+                      value={formData.shippingCountry}
                     />
                   </div>
                   <div>
-                    <p>State</p>
+                    <p>State <span className="text-sm font-normal text-red-primary">*</span></p>
                     <Select
                       title="State"
                       id="state-select"
                       options={states[selectedCountry] || []}
                       onChange={handleStateChange}
                       className="px-2"
-                      value={formData.state}
+                      value={formData.shippingState}
                     />
                   </div>
                   <div>
@@ -316,13 +356,13 @@ function ConsigneeDetails() {
                       className=""
                       labelData="Email Address"
                       required="*"
-                      name="email"
-                      value={formData.email}
+                      name="shippingEmail"
+                      value={formData.shippingEmail}
                       onChange={handleInputChange}
                     />
-                    {errors.email && (
-                      <span className="text-sm text-red-500">
-                        {errors.email}
+                    {errors.shippingEmail && (
+                      <span className="text-sm font-medium text-red-500">
+                        {errors.shippingEmail}
                       </span>
                     )}
                   </div>
@@ -332,13 +372,13 @@ function ConsigneeDetails() {
                       className=""
                       labelData="Enter City"
                       required="*"
-                      name="City"
-                      value={formData.city}
+                      name="shippingCity"
+                      value={formData.shippingCity}
                       onChange={handleInputChange}
                     />
-                    {errors.city && (
-                      <span className="text-sm text-red-500">
-                        {errors.city}
+                    {errors.shippingCity && (
+                      <span className="text-sm font-medium text-red-500">
+                        {errors.shippingCity}
                       </span>
                     )}
                   </div>
@@ -347,8 +387,8 @@ function ConsigneeDetails() {
                     className=""
                     labelData="Enter Pincode"
                     required="*"
-                    name="PinCode"
-                    value={formData.pincode}
+                    name="shippingPinCode"
+                    value={formData.shippingPincode}
                     onChange={handleInputChange}
                   />
                 </div>
@@ -362,22 +402,24 @@ function ConsigneeDetails() {
                     onChange={handleInputChange}
                     onClick={onCheckboxClick}
                   />
-                  <label htmlFor="checkbox1" className="text-sm inline-flex">
+                  <label htmlFor="checkbox1" className="text-sm font-medium inline-flex">
                     Billing address is same as shipping address
                   </label> */}
                   <CheckBox
                     type="checkbox" name="addressPreference" id="checkbox2"
-                    checked={formData.addressPreference + '' + onCheckboxClick}
+                    checked={checkbox + "" + onCheckboxClick}
                     labelData="Billing address is same as shipping address"
                     onChange={handleInputChange}
                     onClick={onCheckboxClick}
                   />
                 </div>
                 <div>
+
                   {/* Billing Info detail */}
+
                   {checkbox && (
                     <div>
-                      <h2 className="font-bold text-lg mt-4">
+                      <h2 className="text-sm font-semibold mt-4">
                         Billing Address
                       </h2>
                       <div className="grid grid-cols-3 justify-start items-center gap-4 mt-2">
@@ -387,12 +429,12 @@ function ConsigneeDetails() {
                             className=""
                             labelData="Address 1"
                             required="*"
-                            name="Address 1"
-                            value={formData.address1}
+                            name="billingAddress1"
+                            value={formData.billingAddress1}
                             onChange={handleInputChange}
                           />
                           {errors.address1 && (
-                            <span className="text-sm text-red-500">
+                            <span className="text-sm font-medium text-red-500">
                               {errors.address1}
                             </span>
                           )}
@@ -403,12 +445,12 @@ function ConsigneeDetails() {
                             className=""
                             labelData="Address 2"
                             required="*"
-                            name="Address 2"
-                            value={formData.address2}
+                            name="billingAddress2"
+                            value={formData.billingAddress2}
                             onChange={handleInputChange}
                           />
                           {errors.address2 && (
-                            <span className="text-sm text-red-500">
+                            <span className="text-sm font-medium text-red-500">
                               {errors.address2}
                             </span>
                           )}
@@ -417,8 +459,8 @@ function ConsigneeDetails() {
                           placeholder="Enter Landmark..."
                           className=""
                           labelData="Landmark"
-                          name="landMark"
-                          value={formData.landmark}
+                          name="billingLandMark"
+                          value={formData.billingLandmark}
                           onChange={handleInputChange}
                         />
                         <div>
@@ -428,9 +470,9 @@ function ConsigneeDetails() {
                             id="country-select"
                             required="*"
                             options={countries}
-                            onChange={handleCountryChange}
+                            onChange={(e) => handleInputChange({ target: { name: 'billingCountry', value: e.target.value } })}
                             className="px-2"
-                            value={formData.country}
+                            value={formData.billingCountry}
                           />
                         </div>
                         <div>
@@ -439,7 +481,7 @@ function ConsigneeDetails() {
                             title="State"
                             id="state-select"
                             options={states[selectedCountry] || []}
-                            onChange={handleStateChange}
+                            onChange={(e) => handleInputChange({target: { name: 'billingState', value: e.target.value}})}
                             className="px-2"
                             value={formData.state}
                           />
@@ -450,13 +492,13 @@ function ConsigneeDetails() {
                             className=""
                             labelData="Email Address"
                             required="*"
-                            name="email"
-                            value={formData.email}
+                            name="billingEmail"
+                            value={formData.billingEmail}
                             onChange={handleInputChange}
                           />
-                          {errors.email && (
-                            <span className="text-sm text-red-500">
-                              {errors.email}
+                          {errors.billingEmail && (
+                            <span className="text-sm font-medium text-red-500">
+                              {errors.billingEmail}
                             </span>
                           )}
                         </div>
@@ -466,12 +508,12 @@ function ConsigneeDetails() {
                             className=""
                             labelData="Enter City"
                             required="*"
-                            name="City"
-                            value={formData.city}
+                            name="billingCity"
+                            value={formData.billingCity}
                             onChange={handleInputChange}
                           />
                           {errors.city && (
-                            <span className="text-sm text-red-500">
+                            <span className="text-sm font-medium text-red-500">
                               {errors.city}
                             </span>
                           )}
@@ -481,8 +523,8 @@ function ConsigneeDetails() {
                           className=""
                           labelData="Enter Pincode"
                           required="*"
-                          name="PinCode"
-                          value={formData.pincode}
+                          name="billingPinCode"
+                          value={formData.billingPincode}
                           onChange={handleInputChange}
                         />
                       </div>
