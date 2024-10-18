@@ -1,9 +1,69 @@
+import { useState } from "react";
 import Input from "./ui/Input";
+import Select from "./ui/Select";
+function BillingDetail({className}) {
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  //Countries List
+  const countries = [
+    { value: "usa", label: "United States" },
+    { value: "india", label: "India" },
+    { value: "russia", label: "Russia" },
+    { value: "japan", label: "Japan" },
+  ];
+  // States List
+  const states = {
+    usa: [
+      { value: "ny", label: "New York" },
+      { value: "ca", label: "California" },
+    ],
+    india: [
+      { value: "mh", label: "Maharashtra" },
+      { value: "dl", label: "Delhi" },
+    ],
+  };
+  // const handleCountryChange = (e) => {
+  //   const country = e.target.value;
+  //   setSelectedCountry(country);
+  //   setSelectedState("");
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     shippingCountry: country,
+  //     shippingState: "",
+  //   }));
+  // };
+  // const handleStateChange = (e) => {
+  //   const state = e.target.value;
+  //   setSelectedState(state);
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     shippingState: state,
+  //   }));
+  // };
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    mobileNumber: "",
+    email: "",
+    billingAddress1: "",
+    shippingAddress2: "",
+    shippinglandmark: "",
+    shippingcountry: "",
+    shippingstate: "",
+    shippingcity: "",
+    shippingPincode: "",
+  });
+  function handleInputChange(e) {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  }
 
-function BillingDetail() {
   return (
-    <div>
-      <h2 className="text-sm font-semibold mt-4">Billing Address</h2>
+    <div className={`${className}`}>
+      <h2 className="text-sm font-semibold mt-4">Shipping Address</h2>
       <div className="grid grid-cols-3 justify-start items-center gap-4 mt-2">
         <div>
           <Input
@@ -12,14 +72,14 @@ function BillingDetail() {
             labelData="Address 1"
             required="*"
             name="billingAddress1"
-            // value={formData.billingAddress1}
-            // onChange={handleInputChange}
+            value={formData.billingAddress1}
+            onChange={handleInputChange}
           />
-          {/* {errors.address1 && (
-            <span className="text-sm font-medium text-red-500">
-              {errors.address1}
-            </span>
-          )} */}
+          {/* {errors.billingAddress1 && (
+                  <span className="text-xs font-medium text-red-500">
+                    {errors.billingAddress1}
+                  </span>
+                )} */}
         </div>
         <div>
           <Input
@@ -27,70 +87,52 @@ function BillingDetail() {
             className=""
             labelData="Address 2"
             required="*"
-            name="billingAddress2"
-            // value={formData.billingAddress2}
-            // onChange={handleInputChange}
+            name="shippingAddress2"
+            value={formData.shippingAddress2}
+            onChange={handleInputChange}
           />
-          {/* {errors.address2 && (
-            <span className="text-sm font-medium text-red-500">
-              {errors.address2}
-            </span>
-          )} */}
+          {/* {errors.shippingAddress2 && (
+                  <span className="text-xs font-medium text-red-500">
+                    {errors.shippingAddress2}
+                  </span>
+                )} */}
         </div>
         <Input
           placeholder="Enter Landmark..."
           className=""
           labelData="Landmark"
-          name="billingLandMark"
-        //   value={formData.billingLandmark}
-        //   onChange={handleInputChange}
+          name="shippinglandmark"
+          value={formData.shippinglandmark}
+          onChange={handleInputChange}
         />
-        {/* <div>
-          <p>Country</p>
+        <div>
+          <p className="text-sm">
+            Country{" "}
+            <span className="text-sm font-normal text-red-primary">*</span>
+          </p>
           <Select
             title="Country"
             id="country-select"
             required="*"
             options={countries}
-            onChange={(e) =>
-              handleInputChange({
-                target: { name: "billingCountry", value: e.target.value },
-              })
-            }
-            className="px-2"
-            // value={formData.billingCountry}
+            onChange={handleInputChange}
+            className="px-2 text-sm mt-1"
+            value={formData.shippingcountry}
           />
-        </div> */}
-        {/* <div>
-          <p>State</p>
+        </div>
+        <div>
+          <p className="text-sm">
+            State{" "}
+            <span className="text-sm font-normal text-red-primary">*</span>
+          </p>
           <Select
             title="State"
             id="state-select"
             options={states[selectedCountry] || []}
-            onChange={(e) =>
-              handleInputChange({
-                target: { name: "billingState", value: e.target.value },
-              })
-            }
-            className="px-2"
-            value={formData.state}
+            onChange={handleInputChange}
+            className="px-2 text-sm mt-1"
+            //   value={formData.shippingState}
           />
-        </div> */}
-        <div>
-          <Input
-            placeholder="Enter Email ID..."
-            className=""
-            labelData="Email Address"
-            required="*"
-            name="billingEmail"
-            // value={formData.billingEmail}
-            // onChange={handleInputChange}
-          />
-          {/* {errors.billingEmail && (
-            <span className="text-sm font-medium text-red-500">
-              {errors.billingEmail}
-            </span>
-          )} */}
         </div>
         <div>
           <Input
@@ -98,25 +140,30 @@ function BillingDetail() {
             className=""
             labelData="Enter City"
             required="*"
-            name="billingCity"
-            // value={formData.billingCity}
-            // onChange={handleInputChange}
+            name="shippingcity"
+            value={formData.shippingcity}
+            onChange={handleInputChange}
           />
-          {/* {errors.city && (
-            <span className="text-sm font-medium text-red-500">
-              {errors.city}
-            </span>
-          )} */}
+          {/* {errors.shippingcity && (
+                  <span className="text-sm font-medium text-red-500">
+                    {errors.shippingcity}
+                  </span>
+                )} */}
         </div>
-        <Input
-          placeholder="Enter Pincode..."
-          className=""
-          labelData="Enter Pincode"
-          required="*"
-          name="billingPinCode"
-        //   value={formData.billingPincode}
-        //   onChange={handleInputChange}
-        />
+        <div>
+          <Input
+            placeholder="Enter Pincode..."
+            className=""
+            labelData="Enter Pincode"
+            required="*"
+            name="shippingPincode"
+            value={formData.shippingPincode}
+            onChange={handleInputChange}
+          />
+          {/* {errors.shippingPincode && (
+                  <span className="text-xs font-medium text-red-500">{errors.shippingPincode}</span>
+                )} */}
+        </div>
       </div>
     </div>
   );

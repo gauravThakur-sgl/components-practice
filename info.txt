@@ -1,0 +1,16 @@
+<div className=" h-8 w-52  ">
+          <span
+            className={`${
+              !isOpen && activeForm>=1
+                ? "bg-green-500 text-white "
+                : !isOpen
+                ? "bg-slate-200 text-black"
+                : "bg-black text-white"
+            } rounded-md  text-sm px-2 py-1 `}
+          >
+            {!isOpen && activeForm>=1 ?"✓":1}
+          </span>
+          <span className="text-[15px] font-medium mx-4">
+            Consignor Details
+          </span>
+        </div>

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 function CheckBox(props) {
-    const {type, id, variant="default", size="default", labelData, className, name, onChange, required,onClick} = props
+    const {type, id, variant="default", size="default", labelData, className, name, onChange, required,onClick,checked} = props
     const inputColors = {
         default: "bg-black-300",
         error: "bg-red-100 border-0 ring-1 ring-inset ring-red-300 focus:ring-2 focus:ring-red-400"
@@ -16,7 +16,7 @@ function CheckBox(props) {
   return (
     <div className="flex flex-row-reverse justify-start gap-2">
       <label htmlFor={id}>{labelData} <span className="text-red-500">{required}</span> </label>
-      <input type={type}  id={id} name={name} className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ''}`}  onChange={onChange} onClick={onClick}/>
+      <input type={type}  id={id} name={name} className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ''}`}  onChange={onChange} onClick={onClick} checked={checked}/>
     </div>
   )
 }
