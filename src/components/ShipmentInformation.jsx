@@ -6,8 +6,15 @@ import Button from "./ui/Button";
 import Input from "./ui/Input";
 import Select from "./ui/Select";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import Errors from "./ui/Errors";
 
-function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeState }) {
+function ShipmentInformation({
+  stepNumber,
+  isOpen,
+  nextStep,
+  onToggle,
+  activeState,
+}) {
   const [formData, setFormData] = useState({
     invoiceNumber: "",
     invoiceDate: "",
@@ -36,7 +43,6 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
       errors.iossNumber = "IOSS number required"; // Ioss Number
     }
 
-    
     return errors;
   }
 
@@ -44,6 +50,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
     e.preventDefault();
     const newErrors = validateForm(formData);
     setErrors(newErrors);
+    console.log(formData);
     if (Object.keys(newErrors).length === 0) {
       nextStep();
       // onToggle={onToggle}
@@ -128,11 +135,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                   value={formData.invoiceNumber}
                   onChange={handleProductChange}
                 />
-                {errors.invoiceNumber && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.invoiceNumber}
-                  </span>
-                )}
+                <Errors name={errors.invoiceNumber} />
               </div>
               <Input
                 type="date"
@@ -168,11 +171,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                   value={formData.orderRefrenceId}
                   onChange={handleProductChange}
                 />
-                {errors.orderRefrenceId && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.orderRefrenceId}
-                  </span>
-                )}
+                <Errors name={errors.orderRefrenceId} />
               </div>
 
               <div>
@@ -186,11 +185,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                   value={formData.iossNumber}
                   onChange={handleProductChange}
                 />
-                {errors.iossNumber && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.iossNumber}
-                  </span>
-                )}
+                <Errors name={errors.iossNumber} />
               </div>
             </div>
 
@@ -219,11 +214,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       </span>
                     </div>
                   </div>
-                  {errors.deadWeight && (
-                    <span className="text-xs font-medium text-red-500">
-                      {errors.deadWeight}
-                    </span>
-                  )}
+                  <Errors name={errors.deadWeight} />
                 </div>
                 <div className="">
                   <label htmlFor="" className="text-sm">
@@ -246,11 +237,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       </span>
                     </div>
                   </div>
-                  {errors.length && (
-                    <span className="text-xs font-medium text-red-500">
-                      {errors.length}
-                    </span>
-                  )}
+                  <Errors name={errors.length} />
                 </div>
                 <div className="">
                   <label htmlFor="" className="text-sm">
@@ -272,11 +259,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       </span>
                     </div>
                   </div>
-                  {errors.breadth && (
-                    <span className="text-xs font-medium text-red-500">
-                      {errors.breadth}
-                    </span>
-                  )}
+                  <Errors name={errors.breadth} />
                 </div>
                 <div className="">
                   <label htmlFor="" className="text-sm">
@@ -299,11 +282,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       </span>
                     </div>
                   </div>
-                  {errors.height && (
-                    <span className="text-xs text-red-500 font-medium">
-                      {errors.height}
-                    </span>
-                  )}
+                  <Errors name={errors.height} />
                 </div>
               </div>
             </div>
@@ -332,11 +311,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       value={formData.productName}
                       onChange={handleProductChange}
                     />
-                    {errors.productName && (
-                      <span className="text-xs text-red-500 font-medium">
-                        {errors.productName}
-                      </span>
-                    )}
+                    <Errors name={errors.productName} />
                   </div>
                   <Input placeholder="Enter SKU... " labelData="SKU" />
                   <div>
@@ -348,11 +323,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       value={formData.hsn}
                       onChange={handleProductChange}
                     />
-                    {errors.hsn && (
-                      <span className="text-xs text-red-500 font-medium">
-                        {errors.hsn}
-                      </span>
-                    )}
+                    <Errors name={errors.hsn} />
                   </div>
                   <div>
                     <Input
@@ -363,11 +334,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       value={formData.qty}
                       onChange={handleProductChange}
                     />
-                    {errors.qty && (
-                      <span className="text-xs text-red-500 font-medium">
-                        {errors.qty}
-                      </span>
-                    )}
+                    <Errors name={errors.qty} />
                   </div>
                   <div>
                     <Input
@@ -378,11 +345,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
                       value={formData.unitPrice}
                       onChange={handleProductChange}
                     />
-                    {errors.unitPrice && (
-                      <span className="text-xs text-red-500 font-medium">
-                        {errors.unitPrice}
-                      </span>
-                    )}
+                    <Errors name={errors.unitPrice} />
                   </div>
                   <div>
                     <Input

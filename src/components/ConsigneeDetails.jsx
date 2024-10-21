@@ -238,7 +238,6 @@ function ConsigneeDetails() {
                       </span>
                     )}
                   </div>
-
                   <div>
                     <Input
                       placeholder="Enter Mobile Number..."

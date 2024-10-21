@@ -24,7 +24,7 @@ export const Accordion = ({
 
   return (
     <div
-      className={` w-full  border rounded-sm w-96  rounded-lg transition ease-in-out delay-150 cursor-pointer ${
+      className={` w-full  border rounded-sm w-96  rounded-lg transition ease-in-out delay-150 ${
         className || ""
       }`}
       {...props}
@@ -42,7 +42,7 @@ export const Accordion = ({
             }
               
             `}
-            onClick={onToggle}
+            // onClick={onToggle} //onclick={()=>setActiveState(stepnumber)}
           >
             {/* Accordion Title  */}
             <div className="flex justify-center items-center text-sm text-black">
@@ -79,9 +79,8 @@ export const Accordion = ({
               </div>
               {item.title}
             </div>
-
             {/* Accordion logo */}
-            <div className="cursor-pointer">
+            <div className="cursor-pointer" onClick={onToggle}>
               <div
                 className={`height-[40px] text-sm 
                 }`}

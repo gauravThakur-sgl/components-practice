@@ -16,7 +16,7 @@ function Input(props) {
     const sizeClasses = inputSize[size] || inputSize.default
   return (
     <div className="flex flex-col justify-start gap-2 appearance-none">
-      <label htmlFor={id} className="text-sm font-normal leading-none">{labelData} <span className="text-red-primary">{required}</span> </label>
+      <label htmlFor={id} className="text-sm font-normal leading-none">{labelData} {/* required && <span ...class>*</span>*/} <span className="text-red-primary">{required}</span> </label>
       <input type={type} placeholder={placeholder} id={id} name={name} className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ''}`}  onChange={onChange} onClick={onClick}/>
     </div>
   )

@@ -7,6 +7,7 @@ import Select from "./ui/Select";
 import Button from "./ui/Button";
 import CheckBox from "./ui/CheckBox";
 import BillingDetail from "./BillingDetail";
+import Errors from "./ui/Errors";
 
 function ConsigneeDetail({
   stepNumber,
@@ -18,9 +19,9 @@ function ConsigneeDetail({
   activeState,
   ...props
 }) {
-  const [checked, setChecked] = useState(true)
+  const [checked, setChecked] = useState(true);
   function handleCheckbox() {
-    setChecked(!checked)
+    setChecked(!checked);
   }
   const [selectedCountry, setSelectedCountry] = useState("");
   const [selectedState, setSelectedState] = useState("");
@@ -59,7 +60,24 @@ function ConsigneeDetail({
   function validateForm(data) {
     const errors = {};
     // check First Name
-    
+
+    // const Properties = [
+    // {
+    //   key:"firstname",
+    //   regex:"djknjkd",
+    //   regexError:"knjklnd is enklenlke",
+    //   placeholderName:"First name"
+    // },
+    // {
+    //   key:"firstname",
+    //   regex:"djknjkd",
+    //   regexError:"knjklnd is enklenlke",
+    //   placeholderName:"First name"
+    // },
+    // ]
+    //Properties.map((prop)=> if(!data.prop.key.trim(){errors.prop.key = `${prop.placeholdername} is required`}))
+    //elseif(prop.regex.test(data.prop.key){error.prop.key = prop.regexError})
+
     if (!data.firstName.trim()) {
       errors.firstName = "First name is required";
     } else if (!/^[A-Za-z]+$/i.test(data.firstName)) {
@@ -103,10 +121,10 @@ function ConsigneeDetail({
     }
     if (!data.shippingPincode.trim()) {
       errors.shippingPincode = "Pincode is required";
-    } else if(data.shippingPincode.length < 6){
-      errors.shippingPincode = "Pincode must be of 6 digit"
+    } else if (data.shippingPincode.length < 6) {
+      errors.shippingPincode = "Pincode must be of 6 digit";
     }
-    console.log(errors)
+    console.log(errors);
     return errors;
   }
 
@@ -180,11 +198,7 @@ function ConsigneeDetail({
                   value={formData.firstName}
                   onChange={handleInputChange}
                 />
-                {errors.firstName && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.firstName}
-                  </span>
-                )}
+                <Errors name={errors.firstName} />
               </div>
               <div>
                 <Input
@@ -196,27 +210,19 @@ function ConsigneeDetail({
                   value={formData.lastName}
                   onChange={handleInputChange}
                 />
-                {errors.lastName && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.lastName}
-                  </span>
-                )}
+                <Errors name={errors.lastName} />
               </div>
               <div>
                 <Input
                   placeholder="Enter Mobile Number..."
-                  required="*"
+                  required="*" //required
                   className=""
                   labelData="Mobile Number"
                   name="mobileNumber"
                   value={formData.mobileNumber}
                   onChange={handleInputChange}
                 />
-                {errors.mobileNumber && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.mobileNumber}
-                  </span>
-                )}
+                <Errors name={errors.mobileNumber} />
               </div>
               <div>
                 <Input
@@ -228,11 +234,7 @@ function ConsigneeDetail({
                   value={formData.email}
                   onChange={handleInputChange}
                 />
-                {errors.email && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.email}
-                  </span>
-                )}
+                <Errors name={errors.email} />
               </div>
             </div>
 
@@ -249,11 +251,7 @@ function ConsigneeDetail({
                   value={formData.shippingAddress1}
                   onChange={handleInputChange}
                 />
-                {errors.shippingAddress1 && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.shippingAddress1}
-                  </span>
-                )}
+                <Errors name={errors.shippingAddress1} />
               </div>
               <div>
                 <Input
@@ -265,11 +263,7 @@ function ConsigneeDetail({
                   value={formData.shippingAddress2}
                   onChange={handleInputChange}
                 />
-                {errors.shippingAddress2 && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.shippingAddress2}
-                  </span>
-                )}
+                <Errors name={errors.shippingAddress2} />
               </div>
               <Input
                 placeholder="Enter Landmark..."
@@ -322,11 +316,7 @@ function ConsigneeDetail({
                   value={formData.shippingcity}
                   onChange={handleInputChange}
                 />
-                {errors.shippingcity && (
-                  <span className="text-xs font-medium text-red-500">
-                    {errors.shippingcity}
-                  </span>
-                )}
+                <Errors name={errors.shippingcity} />
               </div>
               <div>
                 <Input
@@ -338,9 +328,7 @@ function ConsigneeDetail({
                   value={formData.shippingPincode}
                   onChange={handleInputChange}
                 />
-                {errors.shippingPincode && (
-                  <span className="text-xs font-medium text-red-500">{errors.shippingPincode}</span>
-                )}
+                <Errors name={errors.shippingPincode} />
               </div>
             </div>
             <div className="inline-flex justify-start items-center text-sm gap-2 mt-6">
@@ -353,9 +341,7 @@ function ConsigneeDetail({
                 checked={checked}
               />
             </div>
-            {!checked && (
-              <BillingDetail className=""/>
-            )}
+            {!checked && <BillingDetail className="" />}
 
             <div className="flex justify-end items-center mt-4">
               <Button

@@ -23,7 +23,8 @@ function ConsignerDetail({
   function handleSubmit(e) {
     e.preventDefault();
     // Input Validation
-    nextStep();
+    nextStep(); 
+    // setActiveStep(step+1)
   }
   const users = [
     { value: "usa", label: "9998887776/John Doe/test@gmail.com" },
@@ -40,12 +41,13 @@ function ConsignerDetail({
           },
         ]}
         stepNumber={stepNumber}
-        isOpen={isOpen}
-        onToggle={onToggle}
+        isOpen={isOpen} // isopen={activestate===1}
+        onToggle={onToggle} //instead pass setActivestate
         activeState={activeState}
       >
         <div className="px-6 py-4">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}> 
+            {/* onSubmit={()=>setActiveStep(step+1)} */}
             <p className="text-sm">Search Customer</p>
             <Select
               title="Customer"
