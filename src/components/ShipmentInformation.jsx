@@ -46,6 +46,7 @@ function ShipmentInformation({ stepNumber, isOpen, nextStep, onToggle,activeStat
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
       nextStep();
+      // onToggle={onToggle}
     } else {
       console.log("Form Submission Failed due to validation errors.");
     }

@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // import { useState } from "react";
-import { FaChevronUp } from "react-icons/fa";
+// import { FaChevronUp } from "react-icons/fa";
 
 export const Accordion = ({
   className,
@@ -21,15 +21,6 @@ export const Accordion = ({
   //   content: "This is a accordian",
   // };
   // const { title, content } = items;-
-  function stepIndicator() {
-    if (stepNumber < activeState) {
-      return "bg-green-500 text-white";
-    } else if (stepNumber === activeState) {
-      return "bg-black text-white";
-    } else {
-      return "bg-slate-200 text-black";
-    }
-  }
 
   return (
     <div
@@ -56,8 +47,7 @@ export const Accordion = ({
             {/* Accordion Title  */}
             <div className="flex justify-center items-center text-sm text-black">
               <div>
-                {/*
-                 {openIndex === index ? (
+                {/*{openIndex === index ? (
                   <span className="px-2 py-[2px] mx-3 rounded-[4px] bg-black font-light text-white text-xs">
                     {stepNumber}
                   </span>
@@ -68,8 +58,16 @@ export const Accordion = ({
                 )}
                  */}
                 <span
-                  className={`${stepNumber < activeState ? "px-[5px]" : "px-2"} py-[2px] mx-3 rounded-[4px] font-semibold text-xs 
-                    ${stepIndicator()}
+                  className={`${
+                    stepNumber < activeState ? "px-[5px]" : "px-2"
+                  } py-[2px] mx-3 rounded-[4px] font-semibold text-xs 
+                    ${
+                      stepNumber < activeState
+                        ? "bg-green-500 text-white"
+                        : stepNumber === activeState
+                        ? "bg-black text-white"
+                        : "bg-slate-200"
+                    }
                   `}
                 >
                   {stepNumber < activeState ? (
@@ -85,11 +83,17 @@ export const Accordion = ({
             {/* Accordion logo */}
             <div className="cursor-pointer">
               <div
-                className={`height-[40px] transition-all duration-200 ${
-                  isOpen ? "" : "rotate-180"
+                className={`height-[40px] text-sm 
                 }`}
               >
-                <FaChevronUp />
+                {/* <FaChevronUp /> */}
+                {stepNumber < activeState ? (
+                  <span className="text-[#1F499E]  font-medium">
+                    <u>Change</u>
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>

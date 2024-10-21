@@ -14,6 +14,12 @@ function ConsignerDetail({
   activeState,
   ...props
 }) {
+  const [error, setError] = useState({});
+  function validateForm(data) {
+    const errors = {};
+    return errors;
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     // Input Validation
@@ -46,7 +52,7 @@ function ConsignerDetail({
               id="country-select"
               required="*"
               options={users}
-              className="px-2 text-sm mt-1 appearance-none"
+              className="px-6 text-sm mt-1 appearance-none row-start-1 col-start-1 text-slate-400 w-[400px] accent-[]"
             />
 
             <div className="flex justify-end items-center mt-4">
