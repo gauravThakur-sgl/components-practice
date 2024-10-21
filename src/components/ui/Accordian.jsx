@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 // import { useState } from "react";
-// import { FaChevronUp } from "react-icons/fa";
+import { FaChevronUp } from "react-icons/fa";
 
 export const Accordion = ({
   className,
@@ -20,7 +20,16 @@ export const Accordion = ({
   //   title: "Click me",
   //   content: "This is a accordian",
   // };
-  // const { title, content } = items;
+  // const { title, content } = items;-
+  function stepIndicator() {
+    if (stepNumber < activeState) {
+      return "bg-green-500 text-white";
+    } else if (stepNumber === activeState) {
+      return "bg-black text-white";
+    } else {
+      return "bg-slate-200 text-black";
+    }
+  }
 
   return (
     <div
@@ -59,15 +68,15 @@ export const Accordion = ({
                 )}
                  */}
                 <span
-                  className={`px-2 py-[2px] mx-3 rounded-[4px] font-semibold text-xs 
-                    ${!isOpen && activeState > 1
-                      ? "bg-green-500"
-                      : !isOpen ? "bg-slate-200 text-black"
-                      : "bg-black text-white"
-                    }
+                  className={`${stepNumber < activeState ? "px-[5px]" : "px-2"} py-[2px] mx-3 rounded-[4px] font-semibold text-xs 
+                    ${stepIndicator()}
                   `}
                 >
-                  {!isOpen && activeState > 1 ? <span className="text-white text-md">✓</span> : stepNumber}
+                  {stepNumber < activeState ? (
+                    <span className="text-white text-sm px">✓</span>
+                  ) : (
+                    stepNumber
+                  )}
                 </span>
               </div>
               {item.title}
@@ -76,12 +85,11 @@ export const Accordion = ({
             {/* Accordion logo */}
             <div className="cursor-pointer">
               <div
-                className={`height-[40px] transition-all duration-200`}
+                className={`height-[40px] transition-all duration-200 ${
+                  isOpen ? "" : "rotate-180"
+                }`}
               >
-                {/* <FaChevronUp /> */}
-                {
-                  !isOpen && activeState > 1 ? <a href=""><span className="text-sm">change</span></a> : ""
-                }
+                <FaChevronUp />
               </div>
             </div>
           </div>

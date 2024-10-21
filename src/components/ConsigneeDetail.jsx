@@ -59,6 +59,7 @@ function ConsigneeDetail({
   function validateForm(data) {
     const errors = {};
     // check First Name
+    
     if (!data.firstName.trim()) {
       errors.firstName = "First name is required";
     } else if (!/^[A-Za-z]+$/i.test(data.firstName)) {

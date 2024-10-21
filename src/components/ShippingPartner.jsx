@@ -56,10 +56,10 @@ function ShippingPartner({ stepNumber, isOpen, onToggle, activeState }) {
             <div>
               <h2 className="text-sm font-semibold">Showing Results</h2>
               <div className="flex justify-center items-center mt-2">
-                <table className="table-auto w-full items-center">
-                  <thead className="border">
-                    <tr className="text-sm">
-                      <th className="p-2 border rounded-lg">Courier Partner</th>
+                <table className="table-auto w-full items-center ">
+                  <thead className="">
+                    <tr className="text-sm rounded-lg ">
+                      <th className="p-2 ">Courier Partner</th>
                       <th>Delivery Time</th>
                       <th>Shipment Rate</th>
                       <th>Select</th>

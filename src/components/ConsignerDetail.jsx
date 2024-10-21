@@ -4,13 +4,27 @@ import { act, useState } from "react";
 import { Accordion } from "./ui/Accordian";
 import Button from "./ui/Button";
 import Input from "./ui/Input";
+import Select from "./ui/Select";
 
-function ConsignerDetail({ isOpen, nextStep, stepNumber,onToggle,activeState, ...props }) {
-  function handleSubmit(e){
+function ConsignerDetail({
+  isOpen,
+  nextStep,
+  stepNumber,
+  onToggle,
+  activeState,
+  ...props
+}) {
+  function handleSubmit(e) {
     e.preventDefault();
     // Input Validation
     nextStep();
   }
+  const users = [
+    { value: "usa", label: "9998887776/John Doe/test@gmail.com" },
+    { value: "india", label: "497979429/Immanual/user@gmail.com" },
+    { value: "russia", label: "8746758987/crentix/crentix@gmail.com" },
+    { value: "japan", label: "8947687465/Dentist/dentist@gmail.com" },
+  ];
   return (
     <div>
       <Accordion
@@ -27,7 +41,14 @@ function ConsignerDetail({ isOpen, nextStep, stepNumber,onToggle,activeState, ..
         <div className="px-6 py-4">
           <form onSubmit={handleSubmit}>
             <p className="text-sm">Search Customer</p>
-            <Input className="w-[500px]" />
+            <Select
+              title="Customer"
+              id="country-select"
+              required="*"
+              options={users}
+              className="px-2 text-sm mt-1 appearance-none"
+            />
+
             <div className="flex justify-end items-center mt-4">
               <Button
                 type="submit"
