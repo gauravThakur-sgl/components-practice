@@ -10,10 +10,9 @@ import Errors from "./ui/Errors";
 
 function ShipmentInformation({
   stepNumber,
-  isOpen,
-  nextStep,
   onToggle,
   activeState,
+  setActiveState,
 }) {
   const [formData, setFormData] = useState({
     invoiceNumber: "",
@@ -52,7 +51,8 @@ function ShipmentInformation({
     setErrors(newErrors);
     console.log(formData);
     if (Object.keys(newErrors).length === 0) {
-      nextStep();
+      // nextStep();
+      setActiveState(4)
       // onToggle={onToggle}
     } else {
       console.log("Form Submission Failed due to validation errors.");
@@ -115,8 +115,8 @@ function ShipmentInformation({
           },
         ]}
         stepNumber={stepNumber}
-        isOpen={isOpen}
-        onToggle={onToggle}
+        isOpen={activeState === 3}
+        onToggle={() => setActiveState(3)}
         activeState={activeState}
       >
         <div className="px-6 py-4">

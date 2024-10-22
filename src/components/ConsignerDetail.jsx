@@ -8,11 +8,11 @@ import Select from "./ui/Select";
 
 function ConsignerDetail({
   isOpen,
-  nextStep,
   stepNumber,
   onToggle,
   activeState,
-  ...props
+  setActiveState,
+  // ...props
 }) {
   const [error, setError] = useState({});
   function validateForm(data) {
@@ -23,7 +23,9 @@ function ConsignerDetail({
   function handleSubmit(e) {
     e.preventDefault();
     // Input Validation
-    nextStep(); 
+    console.log(activeState)
+    setActiveState(2)
+    console.log(activeState)
     // setActiveStep(step+1)
   }
   const users = [
@@ -41,8 +43,8 @@ function ConsignerDetail({
           },
         ]}
         stepNumber={stepNumber}
-        isOpen={isOpen} // isopen={activestate===1}
-        onToggle={onToggle} //instead pass setActivestate
+        isOpen={activeState === 1} // isopen={activestate===1}
+        onToggle={setActiveState} //instead pass setActivestate
         activeState={activeState}
       >
         <div className="px-6 py-4">

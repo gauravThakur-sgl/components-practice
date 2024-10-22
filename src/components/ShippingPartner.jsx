@@ -4,7 +4,7 @@ import Button from "./ui/Button";
 // import Input from "./ui/Input";
 import { CiCircleCheck } from "react-icons/ci";
 
-function ShippingPartner({ stepNumber, isOpen, onToggle, activeState }) {
+function ShippingPartner({ stepNumber, onToggle, activeState }) {
   function handleSubmit(e) {
     e.preventDefault();
   }
@@ -17,7 +17,7 @@ function ShippingPartner({ stepNumber, isOpen, onToggle, activeState }) {
           },
         ]}
         stepNumber={stepNumber}
-        isOpen={isOpen}
+        isOpen={activeState === 4}
         onToggle={onToggle}
         activeState={activeState}
       >

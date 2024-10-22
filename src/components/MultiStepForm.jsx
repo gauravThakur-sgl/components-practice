@@ -12,32 +12,20 @@ function MultiStepForm() {
       <div className="mt-8 space-y-1">
         <ConsignerDetail
           stepNumber={1}
-          isOpen={activeState === 1} //remove this
-          onToggle={() => setActiveState(1)} //dremove the practice of passing running functions as props //remove
-          nextStep={() => setActiveState(2)}//remove
           activeState={activeState}
-          //setActiveStep={...}
+          setActiveState={setActiveState}
         />
         <ConsigneeDetail
           stepNumber={2}
-          isOpen={activeState === 2}
-          onToggle={() => setActiveState(2)}
-          nextStep = {() => setActiveState(3)}
           activeState={activeState}
+          setActiveState={setActiveState}
         />
         <ShipmentInformation
           stepNumber={3}
-          isOpen={activeState === 3}
-          onToggle={() => setActiveState(3)}
-          nextStep = {() => setActiveState(4)}
           activeState={activeState}
+          setActiveState={setActiveState}
         />
-        <ShippingPartner
-          stepNumber={4}
-          isOpen={activeState === 4}
-          onToggle={() => setActiveState(4)}
-          
-        />
+        <ShippingPartner stepNumber={4} setActiveState={setActiveState} />
       </div>
     </div>
   );

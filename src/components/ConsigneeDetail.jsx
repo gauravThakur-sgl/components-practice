@@ -12,11 +12,9 @@ import Errors from "./ui/Errors";
 function ConsigneeDetail({
   stepNumber,
   isOpen,
-  nextStep,
-  prevStep,
   onToggle,
-  prevNumber,
   activeState,
+  setActiveState,
   ...props
 }) {
   const [checked, setChecked] = useState(true);
@@ -159,15 +157,13 @@ function ConsigneeDetail({
     SetErrors(newErrors);
     console.log(formData);
     if (Object.keys(newErrors).length === 0) {
-      nextStep();
+      setActiveState(3);
+      console.log(activeState);
     } else {
       console.log("Form submission failed due to validation errors. ");
     }
   }
-  function handlePrev(e) {
-    e.preventDefault();
-    prevStep();
-  }
+
   return (
     <div>
       <Accordion
@@ -177,9 +173,9 @@ function ConsigneeDetail({
           },
         ]}
         stepNumber={stepNumber}
-        isOpen={isOpen}
-        onToggle={onToggle}
-        prevNumber={prevNumber}
+        isOpen={activeState === 2}
+        // onToggle={() => setActiveState(2)}
+        onToggle={()=>console.log("first")}
         activeState={activeState}
       >
         <form action="" onSubmit={handleSubmit}>

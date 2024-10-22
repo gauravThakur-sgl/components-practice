@@ -37,7 +37,7 @@ export const Accordion = ({
             //   openIndex === index ? "bg-gray-50" : "bg-white"
             // }`}
             // onClick={() => handleToggle(index)}
-            className={`flex justify-between items-center border font-semibold py-2 px-6 ${
+            className={`flex justify-between items-center border font-semibold py-3 px-6 ${
               isOpen ? "bg-gray-50" : "bg-white"
             }
               
