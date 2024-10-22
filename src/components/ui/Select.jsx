@@ -7,6 +7,8 @@ function Select(props) {
     size = "default",
     className,
     options,
+    value,
+    required,
     onChange,
   } = props;
 
@@ -27,11 +29,14 @@ function Select(props) {
 
   return (
     <div>
+      
       <select
         name={title}
         id={id}
         className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className || ""}`}
         onChange={onChange}
+        value={value}
+        required={required}
       >
         <option value="" className="text-sm">Select {title}</option>
         {options.map((option) => (
@@ -40,6 +45,7 @@ function Select(props) {
           </option>
         ))}
       </select>
+
     </div>
   );
 }

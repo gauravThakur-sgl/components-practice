@@ -25,7 +25,7 @@ function MultiStepForm() {
           activeState={activeState}
           setActiveState={setActiveState}
         />
-        <ShippingPartner stepNumber={4} setActiveState={setActiveState} />
+        <ShippingPartner stepNumber={4} setActiveState={setActiveState} activeState={activeState} />
       </div>
     </div>
   );

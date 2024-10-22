@@ -130,19 +130,19 @@ function ConsigneeDetail({
     const country = e.target.value;
     setSelectedCountry(country);
     setSelectedState("");
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   shippingCountry: country,
-    //   shippingState: "",
-    // }));
+    setFormData((prevData) => ({
+      ...prevData,
+      shippingCountry: country,
+      shippingState: "",
+    }));
   };
   const handleStateChange = (e) => {
     const state = e.target.value;
-    // setSelectedState(state);
-    // setFormData((prevData) => ({
-    //   ...prevData,
-    //   shippingState: state,
-    // }));
+    setSelectedState(state);
+    setFormData((prevData) => ({
+      ...prevData,
+      shippingState: state,
+    }));
   };
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -174,8 +174,8 @@ function ConsigneeDetail({
         ]}
         stepNumber={stepNumber}
         isOpen={activeState === 2}
-        // onToggle={() => setActiveState(2)}
-        onToggle={()=>console.log("first")}
+        onToggle={() => setActiveState(2)}
+        // onToggle={()=>console.log("first")}
         activeState={activeState}
       >
         <form action="" onSubmit={handleSubmit}>
@@ -184,83 +184,73 @@ function ConsigneeDetail({
             <div
               className={`grid grid-cols-3 justify-start items-center gap-4 mt-2 `}
             >
-              <div>
-                <Input
-                  placeholder="Enter First Name..."
-                  required="*"
-                  className=""
-                  labelData="First Name"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.firstName} />
-              </div>
-              <div>
-                <Input
-                  placeholder="Enter Last Name..."
-                  required="*"
-                  className=""
-                  labelData="Last Name"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.lastName} />
-              </div>
-              <div>
-                <Input
-                  placeholder="Enter Mobile Number..."
-                  required="*" //required
-                  className=""
-                  labelData="Mobile Number"
-                  name="mobileNumber"
-                  value={formData.mobileNumber}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.mobileNumber} />
-              </div>
-              <div>
-                <Input
-                  placeholder="Enter Email ID..."
-                  className=""
-                  labelData="Email Address"
-                  required="*"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.email} />
-              </div>
+              <Input
+                placeholder="Enter First Name..."
+                required="*"
+                className=""
+                labelData="First Name"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleInputChange}
+                errorName={errors.firstName}
+              />
+
+              <Input
+                placeholder="Enter Last Name..."
+                required="*"
+                className=""
+                labelData="Last Name"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleInputChange}
+                errorname={errors.lastname}
+              />
+
+              <Input
+                placeholder="Enter Mobile Number..."
+                required="*" //required
+                className=""
+                labelData="Mobile Number"
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleInputChange}
+                errorName={errors.mobileNumber}
+              />
+              <Input
+                placeholder="Enter Email ID..."
+                className=""
+                labelData="Email Address"
+                required="*"
+                name="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                errorName={errors.email}
+              />
             </div>
 
             {/* Shipping Address */}
             <h2 className="text-sm font-semibold mt-4">Shipping Address</h2>
             <div className="grid grid-cols-3 justify-start items-center gap-4 mt-2">
-              <div>
-                <Input
-                  placeholder="Enter Address 1..."
-                  className=""
-                  labelData="Address 1"
-                  required="*"
-                  name="shippingAddress1"
-                  value={formData.shippingAddress1}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.shippingAddress1} />
-              </div>
-              <div>
-                <Input
-                  placeholder="Enter Address 2..."
-                  className=""
-                  labelData="Address 2"
-                  required="*"
-                  name="shippingAddress2"
-                  value={formData.shippingAddress2}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.shippingAddress2} />
-              </div>
+              <Input
+                placeholder="Enter Address 1..."
+                className=""
+                labelData="Address 1"
+                required="*"
+                name="shippingAddress1"
+                value={formData.shippingAddress1}
+                onChange={handleInputChange}
+                errorName={errors.shippingAddress1}
+              />
+              <Input
+                placeholder="Enter Address 2..."
+                className=""
+                labelData="Address 2"
+                required="*"
+                name="shippingAddress2"
+                value={formData.shippingAddress2}
+                onChange={handleInputChange}
+                errorName={errors.shippingAddress2}
+              />
               <Input
                 placeholder="Enter Landmark..."
                 className=""
@@ -279,11 +269,10 @@ function ConsigneeDetail({
                 <Select
                   title="Country"
                   id="country-select"
-                  required="*"
+                  required={false}
                   options={countries}
                   onChange={handleInputChange}
                   className="px-2 text-sm mt-1"
-                  value={formData.shippingcountry}
                 />
               </div>
               <div>
@@ -299,33 +288,29 @@ function ConsigneeDetail({
                   options={states[selectedCountry] || []}
                   onChange={handleStateChange}
                   className="px-2 text-sm mt-1"
-                  //   value={formData.shippingState}
+                  value={formData.shippingState}
                 />
               </div>
-              <div>
-                <Input
-                  placeholder="Enter City..."
-                  className=""
-                  labelData="Enter City"
-                  required="*"
-                  name="shippingcity"
-                  value={formData.shippingcity}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.shippingcity} />
-              </div>
-              <div>
-                <Input
-                  placeholder="Enter Pincode..."
-                  className=""
-                  labelData="Enter Pincode"
-                  required="*"
-                  name="shippingPincode"
-                  value={formData.shippingPincode}
-                  onChange={handleInputChange}
-                />
-                <Errors name={errors.shippingPincode} />
-              </div>
+              <Input
+                placeholder="Enter City..."
+                className=""
+                labelData="Enter City"
+                required="*"
+                name="shippingcity"
+                value={formData.shippingcity}
+                onChange={handleInputChange}
+                errorName={errors.shippingcity}
+              />
+              <Input
+                placeholder="Enter Pincode..."
+                className=""
+                labelData="Enter Pincode"
+                required="*"
+                name="shippingPincode"
+                value={formData.shippingPincode}
+                onChange={handleInputChange}
+                errorName={errors.shippingPincode}
+              />
             </div>
             <div className="inline-flex justify-start items-center text-sm gap-2 mt-6">
               <CheckBox

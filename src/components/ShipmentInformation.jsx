@@ -8,12 +8,7 @@ import Select from "./ui/Select";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Errors from "./ui/Errors";
 
-function ShipmentInformation({
-  stepNumber,
-  onToggle,
-  activeState,
-  setActiveState,
-}) {
+function ShipmentInformation({ stepNumber, activeState, setActiveState }) {
   const [formData, setFormData] = useState({
     invoiceNumber: "",
     invoiceDate: "",
@@ -52,7 +47,7 @@ function ShipmentInformation({
     console.log(formData);
     if (Object.keys(newErrors).length === 0) {
       // nextStep();
-      setActiveState(4)
+      setActiveState(4);
       // onToggle={onToggle}
     } else {
       console.log("Form Submission Failed due to validation errors.");
@@ -125,24 +120,23 @@ function ShipmentInformation({
             <div
               className={`grid grid-cols-3 justify-start items-center gap-4 mt-2 `}
             >
-              <div>
-                <Input
-                  placeholder="Enter Invoice Number..."
-                  required="*"
-                  className=""
-                  labelData="Invoice Number"
-                  name="invoiceNumber"
-                  value={formData.invoiceNumber}
-                  onChange={handleProductChange}
-                />
-                <Errors name={errors.invoiceNumber} />
-              </div>
+              <Input
+                placeholder="Enter Invoice Number..."
+                required="*"
+                className=""
+                labelData="Invoice Number"
+                name="invoiceNumber"
+                value={formData.invoiceNumber}
+                onChange={handleProductChange}
+                errorName={errors.invoiceNumber}
+              />
               <Input
                 type="date"
                 required="*"
                 className=""
                 labelData="Invoice Date"
                 name="invoiceDate"
+                errorName={errors.invoiceDate}
               />
               <div>
                 <p className="text-sm">
@@ -160,33 +154,29 @@ function ShipmentInformation({
                 />
               </div>
 
-              <div>
-                <Input
-                  type="text"
-                  placeholder="Enter Order/Reference ID..."
-                  required="*"
-                  className=""
-                  labelData="Order/Reference ID"
-                  name="orderId"
-                  value={formData.orderRefrenceId}
-                  onChange={handleProductChange}
-                />
-                <Errors name={errors.orderRefrenceId} />
-              </div>
+              <Input
+                type="text"
+                placeholder="Enter Order/Reference ID..."
+                required="*"
+                className=""
+                labelData="Order/Reference ID"
+                name="orderId"
+                value={formData.orderRefrenceId}
+                onChange={handleProductChange}
+                errorName={errors.orderRefrenceId}
+              />
 
-              <div>
-                <Input
-                  type="text"
-                  placeholder="Enter IOSS Number..."
-                  required="*"
-                  className=""
-                  labelData="IOSS Number"
-                  name="iossNumber"
-                  value={formData.iossNumber}
-                  onChange={handleProductChange}
-                />
-                <Errors name={errors.iossNumber} />
-              </div>
+              <Input
+                type="text"
+                placeholder="Enter IOSS Number..."
+                required="*"
+                className=""
+                labelData="IOSS Number"
+                name="iossNumber"
+                value={formData.iossNumber}
+                onChange={handleProductChange}
+                errorName={errors.iossNumber}
+              />
             </div>
 
             {/* // Box Measurements */}
@@ -302,66 +292,53 @@ function ShipmentInformation({
                     index > 0 ? "pr-2" : "pr-[35px]"
                   }`}
                 >
-                  <div>
-                    <Input
-                      placeholder="Enter Product Name..."
-                      required="*"
-                      labelData="Product Name"
-                      className="w-full"
-                      value={formData.productName}
-                      onChange={handleProductChange}
-                    />
-                    <Errors name={errors.productName} />
-                  </div>
+                  <Input
+                    placeholder="Enter Product Name..."
+                    required="*"
+                    labelData="Product Name"
+                    className="w-full"
+                    value={formData.productName}
+                    onChange={handleProductChange}
+                    errorName={errors.productName}
+                  />
                   <Input placeholder="Enter SKU... " labelData="SKU" />
-                  <div>
-                    <Input
-                      placeholder="Enter HSN..."
-                      required="*"
-                      labelData="HSN"
-                      className="w-full"
-                      value={formData.hsn}
-                      onChange={handleProductChange}
-                    />
-                    <Errors name={errors.hsn} />
-                  </div>
-                  <div>
-                    <Input
-                      placeholder="Enter Qty..."
-                      required="*"
-                      labelData="Qty"
-                      className="w-full"
-                      value={formData.qty}
-                      onChange={handleProductChange}
-                    />
-                    <Errors name={errors.qty} />
-                  </div>
-                  <div>
-                    <Input
-                      placeholder="Enter Unit Price (INR)..."
-                      required="*"
-                      labelData="Unit Price (INR)"
-                      className="w-full"
-                      value={formData.unitPrice}
-                      onChange={handleProductChange}
-                    />
-                    <Errors name={errors.unitPrice} />
-                  </div>
-                  <div>
-                    <Input
-                      placeholder="0%"
-                      required="*"
-                      labelData="IGST"
-                      className="w-full"
-                      value={formData.igst}
-                      onChange={handleProductChange}
-                    />
-                    {errors.igst && (
-                      <span className="text-xs text-red-500 font-medium">
-                        {errors.igst}
-                      </span>
-                    )}
-                  </div>
+                  <Input
+                    placeholder="Enter HSN..."
+                    required="*"
+                    labelData="HSN"
+                    className="w-full"
+                    value={formData.hsn}
+                    onChange={handleProductChange}
+                    errorName={errors.hsn}
+                  />
+                  <Input
+                    placeholder="Enter Qty..."
+                    required="*"
+                    labelData="Qty"
+                    className="w-full"
+                    value={formData.qty}
+                    onChange={handleProductChange}
+                    errorName={errors.qty}
+                  />
+                  <Input
+                    placeholder="Enter Unit Price (INR)..."
+                    required="*"
+                    labelData="Unit Price (INR)"
+                    className="w-full"
+                    value={formData.unitPrice}
+                    onChange={handleProductChange}
+                    errorName={errors.unitPrice}
+                  />
+                  <Input
+                    placeholder="0%"
+                    required="*"
+                    labelData="IGST"
+                    className="w-full"
+                    value={formData.igst}
+                    onChange={handleProductChange}
+                    errorName={errors.igst}
+                  />
+
                   {index > 0 && (
                     <div className="mt-4" onClick={() => removeProduct(index)}>
                       <RiDeleteBin6Line className="h-[20px] w-[20px] mt-2 text-red-primary cursor-pointer" />
