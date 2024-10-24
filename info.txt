@@ -1,57 +1,18 @@
-const [selectedCountry, setSelectedCountry] = useState("");
-const [selectedState, setSelectedState] = useState("");
+<div className=" h-8 w-52  ">
+          <span
+            className={`${
+              !isOpen && activeForm>=1
+                ? "bg-green-500 text-white "
+                : !isOpen
+                ? "bg-slate-200 text-black"
+                : "bg-black text-white"
+            } rounded-md  text-sm px-2 py-1 `}
+          >
+            {!isOpen && activeForm>=1 ?"✓":1}
+          </span>
+          <span className="text-[15px] font-medium mx-4">
+            Consignor Details
+          </span>
+        </div>
 
-const countries = [
-    { value: "usa", label: "United States" },
-    { value: "india", label: "India" },
-    { value: "russia", label: "Russia" },
-    { value: "japan", label: "Japan" },
-  ];
 
-  const states = {
-    usa: [
-      { value: "ny", label: "New York" },
-      { value: "ca", label: "California" },
-    ],
-    india: [
-      { value: "mh", label: "Maharashtra" },
-      { value: "dl", label: "Delhi" },
-    ],
-  };
-
-const handleCountryChange = (e) => {
-    const country = e.target.value;
-    setSelectedCountry(country);
-    setSelectedState("");
-    setFormData(prevData => ({
-      ...prevData,
-      country: country,
-      state: ""
-    }))
-  };
-  const handleStateChange = (e) => {
-    const state = e.target.value;
-    setSelectedState(state);
-    setFormData(prevData => ({
-      ...prevData,
-      state: state
-    }))
-  };
-
-  <Select
-                  title="Country"
-                  id="country-select"
-                  options={countries}
-                  onChange={handleCountryChange}
-                  className="px-2"
-                  value={formData.country}
-                />
-
-<Select
-                  title="State"
-                  id="state-select"
-                  options={states[selectedCountry] || []}
-                  onChange={handleStateChange}
-                  className="px-2"
-                  value={formData.state}
-                />
