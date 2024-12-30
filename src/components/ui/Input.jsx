@@ -32,7 +32,7 @@ function Input(props) {
   const variantClasses = inputColors[variant] || inputColors.default;
   const sizeClasses = inputSize[size] || inputSize.default;
   return (
-    <div>
+    <div className="justify-end">
       <div className="flex flex-col justify-start gap-2 appearance-none">
         <label htmlFor={id} className="text-sm font-normal leading-none">
           {labelData} {/* required && <span ...class>*</span>*/}{" "}
@@ -50,7 +50,7 @@ function Input(props) {
           onClick={onClick}
         />
       </div>
-      <Errors name={errorName} />
+      <Errors name={errorName}/>
     </div>
   );
 }

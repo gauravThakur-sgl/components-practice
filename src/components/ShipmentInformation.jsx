@@ -328,8 +328,7 @@ function ShipmentInformation({ stepNumber, activeState, setActiveState }) {
                     value={formData.unitPrice}
                     onChange={handleProductChange}
                     errorName={errors.unitPrice}
-                  />
-                  <Input
+                  />                  <Input
                     placeholder="0%"
                     required="*"
                     labelData="IGST"
